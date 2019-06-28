@@ -14,4 +14,11 @@ Basitten daha karmaşığa doğru örnekler üzerinde ilerleyerek
 - AWS IoT Analytics
 - IoT Events
 
-servislerini deneyimlemenizi sağlamaya çalışacağım. 
+servislerini deneyimlemenizi sağlamaya çalışacağız.
+
+
+#### Ön Koşullar
+
+Öncelikle bir AWS Hesabınına ihtiyacınız olacak. Bunun için https://portal.aws.amazon.com/billing/signup#/start kullanarak AWS Hesabı açabilirsiniz.
+
+
