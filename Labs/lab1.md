@@ -58,6 +58,10 @@ Tebrikler..!! Policy'yi başarı ile tanımladınız.
 
 **Yeni Kullanıcı Oluşturma ve Kullanıcı Yetkilendirme**
 
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+[![AWS IoT Robots](http://img.youtube.com/vi/l9C80KwI7TE/0.jpg)](http://www.youtube.com/watch?v=l9C80KwI7TE "AWS IoT Robots Workshop")
+
 1. IAM ana sayfasına geçin.
 2. IAM servisi ana sayfasındaki sol tarafta bulunan menüden "Users" tıklayın.
 3. "Add User" butonuna tıklayın.
@@ -74,6 +78,13 @@ Tebrikler..!! Policy'yi başarı ile tanımladınız.
 
 
 Tebrikler..!! Yeni Kullanıcıyı başarı ile oluşturdunuz.
+
+
+**Yeni Kullanıcı ile AWS Login Olma**
+
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+[![AWS IoT Robots](http://img.youtube.com/vi/7_JVVkLa2RU/0.jpg)](http://www.youtube.com/watch?v=7_JVVkLa2RU "AWS IoT Robots Workshop")
 
 IAM Ana sayfasındaki sol taraftaki menüden "Dashboard" tıklayın, ve sayfanın en üstünde bulunan 'IAM users sign-in link:' de https://.. ile başlayan linki kopyalayıp browser'da yeni sekmede sayfayı açın.  Yeni kullanıcı adınız ve şifrenizi kullanarak sisteme giriş yapın. İlk defa yeni kullanıcı ile giriş yaptığınız için şifre değişikliği sayfası açılacaktır. O sayfadan yeni şifrenizi tanımlamanız gerekecektir. Bu örnek için şifre kuralları eklemedim fakat, yeni oluşturacağınız şifrenin kaç karakterden oluşması gerektiği, hangi tip karakterden kaçar tane kullanmanız gerektiği, şifrenin geçerlilik periyodu gibi değerleri şifreleme kuralı olarak tanımlayıp, o kurala uygun şifre oluşturmak zorunlu hale getirilebilir. 
 
