@@ -92,5 +92,21 @@ Tebrikler..!! Yeni Kullanıcınız ile sisteme giriş yaptınız. Şimdi biraz I
 
 
 
+**AWS Cloud9 Ortamı Oluşturma**
+
+AWS Cloud9, bulut tabanlı çalışan, herhangi bir kurulum yapmadan doğrudan browser üzerinde kod geliştirme, debug yapma ve kodu çalıştırma yapabileceğiniz bir yazılım geliştirme aracıdır (IDE). Cloud9 içinde kod editörü, debugger ve komut satır arayüz terminali bulunmaktadır.
+
+AWS Cloud9 ortamı IoT Thing olarak tanımlanacak ve robotlarımızı simüle edecektir. 
+
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+1. AWS Web Arayüzünden 'IoTRoboUser' kullanıcısı ile giriş yapın ve Cloud9 servisi ana sayfasına (dashboard) geçin.
+2. Sağ üs köşeden AWS Region olarak **"EU (Ireland)"** seçildiğinden emin olun.
+3. Cloud9 Dashboard ekranında turuncu "Create Environment" butonuna tıklayın.
+4. Name alanına **IoTRobots** yazın. Sonrasında "Next Step" butonuna tıklayın.
+5. 
+
+
+
 
 
