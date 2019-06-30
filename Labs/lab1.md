@@ -23,7 +23,7 @@ AWS Hesabı açtıktan sonra hesabınıza tüm yetkilere sahip, 'Root User' ile 
 4. JSON sekmesine tıklayarak geçin.
 5. Editör kutusundaki yazıları silip, aşağıdaki policy'i kopyalayıp kutuya yapıştırın. 
 6. "Review Policy" tıklayın.
-7. Name alanına **iotRobotPolicy** yazıp
+7. Name alanına **iotRobotsPolicy** yazıp
 8. "Create Policy" tıklayın.
 
 
@@ -61,7 +61,7 @@ Tebrikler..!! Policy'yi başarı ile tanımladınız.
 5. Access Type alanından ise sadece **AWS Management Console access** seçin.
 6. "Next: Permissions" butonuna tıklayın.
 7. Yeni sayfadan "Attach Existing Policies Directly" yazan kutuya tıklayın.
-8. "Filter Policies" alanına **iotRobotPolicy** yazıp, filtrelenen liste alanından daha önce oluşturduğumuz policy'yi seçin.
+8. "Filter Policies" alanına **iotRobotsPolicy** yazıp, filtrelenen liste alanından daha önce oluşturduğumuz policy'yi seçin.
 9. "Next: Tags" butonuna tıklayın.
 10."Next: Review" butonuna tıklayın.
 11. Tüm yaptığınız girişlerin doğruluğundan emin olduktan sonra "Create User" butonuna tıklayın.
