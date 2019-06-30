@@ -17,6 +17,10 @@ AWS Hesabı açtıktan sonra hesabınıza tüm yetkilere sahip, 'Root User' ile 
 **Policy Tanımlama**
 Öncelikle yeni oluşturacağımız kullanıcıya vereceğimiz yetkileri tanımlayalım. Diğer lab'lara geçtikçe aşağıda oluşturduğumuz policy'yi güncelleyerek yeni yetkiler de ekleyeceğiz. 
 
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+[![AWS IoT Robots](http://img.youtube.com/vi/MBD8bsIcbkE/0.jpg)](http://www.youtube.com/watch?v=MBD8bsIcbkE "AWS IoT Robots Workshop")
+
 1. AWS Web Arayüzünden giriş yapın ve IAM servisi ana sayfasına (dashboard) geçin.
 2. IAM servisi ana sayfasındaki sol tarafta bulunan menüden "Policies" tıklayın.
 3. "Create Policy" butonuna tıklayın.
