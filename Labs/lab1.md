@@ -98,6 +98,8 @@ AWS Cloud9, bulut tabanlı çalışan, herhangi bir kurulum yapmadan doğrudan b
 
 AWS Cloud9 ortamı IoT Thing olarak tanımlanacak ve robotlarımızı simüle edecektir. 
 
+[![AWS IoT Robots](http://img.youtube.com/vi/woDrWD7bSTM/0.jpg)](http://www.youtube.com/watch?v=woDrWD7bSTM "AWS IoT Robots Workshop")
+
 Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
 1. AWS Web Arayüzünden 'IoTRoboUser' kullanıcısı ile giriş yapın ve Cloud9 servisi ana sayfasına (dashboard) geçin.
@@ -146,7 +148,7 @@ Bunun için _Robo1_ klasörü üzerinde sağ tıklayıp, 'New File' seçin. Dosy
 4. Dosya seçip, çift tıklayın. **lab1.py** dosyası ana ekranda açıldı. Aşağıdaki kodu dosyanın içine kopyalayıp, dosyayı kaydedin. (Ctrl+S ya da Command+S ya da ACW Cloud9 menüsünden File/Save)
 
 ```python
-
+KOD GELECEK..
 
 ```
 
@@ -170,4 +172,7 @@ wget -O root-CA.crt https://www.symantec.com/content/en/us/enterprise/verisign/r
 
 7. Sonucunda aşağıdaki klasör yapısına sahip olacağız. <EKRAN GORUNTUSU>
   
+**Robo1 Oluşturulması**
+
+
 
