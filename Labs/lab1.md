@@ -51,6 +51,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
         "logs:*",
         "ec2:*",
         "cloudwatch:*",
+        "greengrass:*",
         "tag:getResources"
         ],
       "Resource": "*"
@@ -117,6 +118,8 @@ AWS Cloud9, bulut tabanlı çalışan, herhangi bir kurulum yapmadan doğrudan b
 
 AWS Cloud9 ortamı IoT Thing olarak tanımlanacak ve robotlarımızı simüle edecektir. 
 
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
 [![AWS IoT Robots](http://img.youtube.com/vi/woDrWD7bSTM/0.jpg)](http://www.youtube.com/watch?v=woDrWD7bSTM "AWS IoT Robots Workshop")
 
 Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
@@ -177,6 +180,7 @@ KOD GELECEK..
 ```
 
 5. Aynı işlemi _Robo2_ içinde yapın. (3. ve 4. adımları tekrarlayın. Robo2 klasörünü kullanacağız).
+
 6. Sonraki adımlarda AWS IoT Core'da oluşturacağımız 'Thing'lerin (yani robotlar) IoT Sertifikalarını imzalamak için Sertifika Otoritesinden (CA) _public certificate_ ihtiyacımız olacak. Bunun için AWS IoT Certicate Authority Public Certicate dosyasını aşağıdaki linkten indirebilirsiniz. (Önerilen)     
 
 
@@ -186,7 +190,6 @@ wget -O root-CA.crt https://www.amazontrust.com/repository/AmazonRootCA1.pem
 ```
 
 Alternatif olarak şu [link](https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem) diğer bir CA olan Verisign sertifikasını da kullanabilirsiniz. (Eski yöntem)
-
 
 ```
 cd ~/environment
@@ -199,6 +202,9 @@ wget -O root-CA.crt https://www.symantec.com/content/en/us/enterprise/verisign/r
 
 Bu bölümde AWS IoT Core servini kullanarak AWS Web Arayüzünden IoT Thing, sertifika ve yetki politikasını oluşturacağız. Web arayüzü kullanarak manuel yöntemlerle IoT Thing yaratmak basit olsa da, IoT Thing sayısının yüzbinler binler, milyonlar mertebesinde olduğu durumlarda çok da basit olmayacaktır. O durumlarda [AWS IoT Device Management](https://aws.amazon.com/iot-device-management/) servisinin kullanılması uygun olacaktır. Bu aşamada Robo1 için Web Arayüzünü, Robp2 için ise CLI Komut satırını kullanarak tanımlamaları yapacağız. Sonrasında AWS IoT Core üzerinde herbir robot için oluşturduğumuz sertifika ve politikaları AWS Cloud9'a (Robotların simülatörü göreviyle) yükleyeceğiz.
 
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+[![AWS IoT Robots](http://img.youtube.com/vi/SPHsCvtAwMk/0.jpg)](http://www.youtube.com/watch?v=SPHsCvtAwMk "AWS IoT Robots Workshop")
 
 1. Eğer Cloud9 Dashboardunda iseniz, ekranın üstündeki Cloud9 menüsünün sol üst köşedeki **AWS Cloud9** tıklayıp açılan menüde 'Go to Your Dashboard' seçin. Yeni bir browser sekmesinde AWS Cloud9 Dashboard'u açılacaktır. 
 
@@ -225,7 +231,88 @@ Bu bölümde AWS IoT Core servini kullanarak AWS Web Arayüzünden IoT Thing, se
 
 Bu bölümde IoT Thing'lerin **_yetkilendirmesinde_** kullanmak için IoT Policy oluşturulacaktır.
 
-1. 
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+1. Sol taraftaki menüden **Secure** tıklayın.
+
+2. **Policies** tıklayın
+
+3. **Create a policy** butonuna tıklayın.
+
+4. 'Name' alanına **RoboPolicy** yazın.
+
+5.'Add Statement' alanının solunda **Advanced Mode** tıklayın. (Basic Mode'da çalıştığınızda da 'Action' alanında otomatik filtreleme ile kolaylıkla aksiyon secilebilir. Örneğin 'iot' yazmaya başladığınızda, tüm iot aksiyonları listelenecektir.)
+
+6. 'Advanced Mode' Policy'lerin doğrudan JSON formatında yazılması şeklindedir. Robotların aşağıdaki aksiyonları gerçekleştirmeye yetkisi olması gerektiği için
+    * IoT Core Endpoint2e bağlantı kurabilme
+    * IoT Topic'lere Publisher ya da Subscriber olabilme
+    * Subscribe olduğu IoT Topic'den Mesaj okuyabilme
+  
+  Bunun için 'advanced mode' alanındaki mevcut JSON Policy kaydını silip, yerine aşağıdakini yapıştırın.
+  
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect",
+        "iot:Publish",
+        "iot:Subscribe",
+        "iot:Receive",
+        "greengrass:Discover"
+      ],
+      "Resource": [
+         "*" 
+       ]
+    } 
+  ]
+}
+```
+
+7. **Create** butonuna tıklayın.
+
+8. Yetkilendirme için kullanacağınız Policy başarıyla tanımlandı. Policy listesinde görebilirsiniz.
+
+
+**AWS Web Arayüzünden IoT Sertifikasyonu Oluşturulması - Robo1 **
+
+Bu bölümde kimlik doğrulama (authentication) için kullanılacak IoT Sertifikası oluşturacağız.
+
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+
+
+1. Sol taraftaki menüden **Secure** tıklayın.
+
+2. **Certificates** tıklayın
+
+3. **Create a certificates** butonuna tıklayın.
+
+4. Seçeneklerden en üstteki **Create Certificates** butonuna tıklayın.
+
+5. 'AWS IoT's Certicate Authority' otomatik olarak Public Key ve Private Key dosyalarını oluşturacaktır ki, bunları download etmemiz gerekiyor. Isterseniz kendi Certicate Authority (CA) yükleyebilirsiniz. Ya da mevcut Private Key kullanarak 'certificate signing request (CSR)' oluşturabilirim. Biz bu aşamada hızlı ve kolay olması açısından AWS IoT's CA kullanacağız.
+
+6. Sertifikalar oluşturuldu, şimdi tüm Public Key, Private Key ve Sertifika dosyasını makinanıza indirmeniz gerekecektir. 
+
+7. Sayfanın en altındaki **Activate** butonuna tıklayın. Aktivasyondan sonra bu sertifika ile ilişkilendirilecek IoT Thing'leri AWS IoT Core ile bağlanabilir hale gelmiş oldu.  
+
+8. **A certificate for this thing** sertifikasını indirmek için **download** linkini tıklayın. ve dosyanın adını **_certificate.pem_** olarak değiştirin.
+
+9. **A private key** dosyasını indirmek için **download** linkini tıklayın. ve dosyanın adını **_privateKey.pem_** olarak değiştirin.
+
+10. Public Key dosyasını indirmeye ihtiyacımız yok. Zaten IoT Core içinde tanımlı olarak duruyor.
+
+11. **DONE** butonuna tıklayın. Dikkat _Attach a policy_ butonu değil..
+
+12. Öncelikle oluşturduğunuz Sertifika INACTIVE görünecektir, Sol taraftaki menüden **Certificates**  tekrar tıkladığınızda (ya da sayfayı güncelleyin) sertifikanın ACTIVE olduğunu göreceksiniz.
+
+
+ **AWS Web Arayüzünden IoT Sertifikasyonu ile IoT Thing ve IoT Policy'nin İlişkilendirilmesi - Robo1 **
+
+    
+
  
 
 
