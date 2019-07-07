@@ -22,12 +22,19 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 [![AWS IoT Robots](http://img.youtube.com/vi/MBD8bsIcbkE/0.jpg)](http://www.youtube.com/watch?v=MBD8bsIcbkE "AWS IoT Robots Workshop")
 
 1. AWS Web Arayüzünden giriş yapın ve IAM servisi ana sayfasına (dashboard) geçin.
+
 2. IAM servisi ana sayfasındaki sol tarafta bulunan menüden "Policies" tıklayın.
+
 3. "Create Policy" butonuna tıklayın.
+
 4. JSON sekmesine tıklayarak geçin.
+
 5. Editör kutusundaki yazıları silip, aşağıdaki policy'i kopyalayıp kutuya yapıştırın. 
+
 6. "Review Policy" tıklayın.
+
 7. Name alanına **iotRobotsPolicy** yazıp
+
 8. "Create Policy" tıklayın.
 
 
@@ -63,17 +70,29 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 [![AWS IoT Robots](http://img.youtube.com/vi/l9C80KwI7TE/0.jpg)](http://www.youtube.com/watch?v=l9C80KwI7TE "AWS IoT Robots Workshop")
 
 1. IAM ana sayfasına geçin.
+
 2. IAM servisi ana sayfasındaki sol tarafta bulunan menüden "Users" tıklayın.
+
 3. "Add User" butonuna tıklayın.
+
 4. User Name alanına **IoTRoboUser** yazın.
+
 5. Access Type alanından ise sadece **AWS Management Console access** seçin.
+
 6. "Next: Permissions" butonuna tıklayın.
+
 7. Yeni sayfadan "Attach Existing Policies Directly" yazan kutuya tıklayın.
+
 8. "Filter Policies" alanına **iotRobotsPolicy** yazıp, filtrelenen liste alanından daha önce oluşturduğumuz policy'yi seçin.
+
 9. "Next: Tags" butonuna tıklayın.
+
 10."Next: Review" butonuna tıklayın.
+
 11. Tüm yaptığınız girişlerin doğruluğundan emin olduktan sonra "Create User" butonuna tıklayın.
+
 12. Tablodaki password alanındakı 'Show' linkine tıklayın ve görüntülenen şifrenizi bir yere kaydedin. Ya da "Download .csv" butonu tıklayrak, tablodaki bilgileri indirebilirsiniz.
+
 13. "Close" butonu tıklayın. 
 
 
@@ -103,10 +122,15 @@ AWS Cloud9 ortamı IoT Thing olarak tanımlanacak ve robotlarımızı simüle ed
 Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
 1. AWS Web Arayüzünden 'IoTRoboUser' kullanıcısı ile giriş yapın ve Cloud9 servisi ana sayfasına (dashboard) geçin.
+
 2. Sağ üs köşeden AWS Region olarak **"EU (Ireland)"** seçildiğinden emin olun.
+
 3. Cloud9 Dashboard ekranında turuncu "Create Environment" butonuna tıklayın.
+
 4. Name alanına **IoTRobotsIDE** yazın. Sonrasında "Next Step" butonuna tıklayın.
+
 5. "Configuration Settings" ekraninda, mevcut değerleri (minimum gerekleri sağlayacak değerler işimizi görecektir) değiştirmeden "Next Step" butonuna tıklayın. 'Cost Saving Setting' alanında 30 dakika olarak atanan değer, sizin Cloud9 ortamını 30 dk kullanmadığınız durumda otomatik olarak uyku moduna geçmesine sebep olur. Bu durumda herhangi bir o anki durum kaydedilir, tekrar çalıştırdığınızda kaldığınız yerde devam edebilirsiniz. 
+
 6. Onay sayfasında, Cloud9 IDE kullanırken önerilen en iyi pratiklere göz atmakta fayda var. Sonrasında "Create Environment" butonuna tıklayın.
 
 
@@ -153,8 +177,7 @@ KOD GELECEK..
 ```
 
 5. Aynı işlemi _Robo2_ içinde yapın. (3. ve 4. adımları tekrarlayın. Robo2 klasörünü kullanacağız).
-
-6. Sonraki adımlarda AWS IoT Core'da oluşturacağımız 'Thing'lerin (yani robotlar) IoT Sertifikalarını imzalamak için Sertifika Otoritesinden (CA) _public certificate_ ihtiyacımız olacak. Bunun için AWS IoT Certicate Authority Public Certicate dosyasını aşağıdaki linkten indirebilirsiniz.     
+6. Sonraki adımlarda AWS IoT Core'da oluşturacağımız 'Thing'lerin (yani robotlar) IoT Sertifikalarını imzalamak için Sertifika Otoritesinden (CA) _public certificate_ ihtiyacımız olacak. Bunun için AWS IoT Certicate Authority Public Certicate dosyasını aşağıdaki linkten indirebilirsiniz. (Önerilen)     
 
 
 ```
@@ -162,7 +185,7 @@ cd ~/environment
 wget -O root-CA.crt https://www.amazontrust.com/repository/AmazonRootCA1.pem
 ```
 
-Alternatif olarak şu [link](https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem) diğer bir CA olan Verisign sertifikasını da kullanabilirsiniz.
+Alternatif olarak şu [link](https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem) diğer bir CA olan Verisign sertifikasını da kullanabilirsiniz. (Eski yöntem)
 
 
 ```
@@ -172,7 +195,38 @@ wget -O root-CA.crt https://www.symantec.com/content/en/us/enterprise/verisign/r
 
 7. Sonucunda aşağıdaki klasör yapısına sahip olacağız. <EKRAN GORUNTUSU>
   
-**Robo1 Oluşturulması**
+**AWS Web Arayüzünden IoT Thing Oluşturulması - Robo1 **
+
+Bu bölümde AWS IoT Core servini kullanarak AWS Web Arayüzünden IoT Thing, sertifika ve yetki politikasını oluşturacağız. Web arayüzü kullanarak manuel yöntemlerle IoT Thing yaratmak basit olsa da, IoT Thing sayısının yüzbinler binler, milyonlar mertebesinde olduğu durumlarda çok da basit olmayacaktır. O durumlarda [AWS IoT Device Management](https://aws.amazon.com/iot-device-management/) servisinin kullanılması uygun olacaktır. Bu aşamada Robo1 için Web Arayüzünü, Robp2 için ise CLI Komut satırını kullanarak tanımlamaları yapacağız. Sonrasında AWS IoT Core üzerinde herbir robot için oluşturduğumuz sertifika ve politikaları AWS Cloud9'a (Robotların simülatörü göreviyle) yükleyeceğiz.
+
+
+1. Eğer Cloud9 Dashboardunda iseniz, ekranın üstündeki Cloud9 menüsünün sol üst köşedeki **AWS Cloud9** tıklayıp açılan menüde 'Go to Your Dashboard' seçin. Yeni bir browser sekmesinde AWS Cloud9 Dashboard'u açılacaktır. 
+
+2. AWS Cloud Dashboard'da üst menüden 'Services' tıklayıp, açılan servis listesinde **AWS IoT Core** seçin. Sorgu alanına 'IoT Core' yazarak listeyi filtreleyebilirsiniz.
+
+3.  AWS IoT Core Dashboard açılacaktır. Sol üst köşeden AWS Region IRELAND seçili olduğuna emin olun, değilse de listeden EU  (ireland) seçin.
+
+4. 'Get Started' tıklayın
+
+5. Sol taraftaki menüden **Manage** tıklayın.
+
+6. Sayfanın ortasındaki **Register a thing** butonunu tıklayın.
+
+7. Sayfadaki **Create a single thing** butonlarından herhangi birini tıklayın.
+
+8. 'Name' alanına **Robo1** yazın (Diğer alanlar mevcut değerlerinde kalabilir.), ve **Next** tıklayın.
+
+9. Sertifika oluşturma işlemi için, 'One-click certificate creation (recommended)' opsiyonu ile hızla oluşturup, IoT Thing (Robo1) ile ilişkilendirebiliriz fakat, şimdilik en son seçenek olan **Create thing without certicate** ile ilerleyelim. Sertifikaya IoT Thing'i sonraki adımda ilişkilendirelim.
+
+10. 'Thing' sayfasında yeni oluşturduğumuz **Robo1** listelenecektir.
+
+
+**AWS Web Arayüzünden IoT Policy Oluşturulması - Robo1 **
+
+Bu bölümde IoT Thing'lerin **_yetkilendirmesinde_** kullanmak için IoT Policy oluşturulacaktır.
+
+1. 
+ 
 
 
 
