@@ -276,7 +276,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 8. Yetkilendirme için kullanacağınız Policy başarıyla tanımlandı. Policy listesinde görebilirsiniz.
 
 
-**AWS Web Arayüzünden IoT Sertifikasyonu Oluşturulması - Robo1 **
+**AWS Web Arayüzünden IoT Sertifikasyonu Oluşturulması - Robo1**
 
 Bu bölümde kimlik doğrulama (authentication) için kullanılacak IoT Sertifikası oluşturacağız.
 
@@ -309,7 +309,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 12. Öncelikle oluşturduğunuz Sertifika INACTIVE görünecektir, Sol taraftaki menüden **Certificates**  tekrar tıkladığınızda (ya da sayfayı güncelleyin) sertifikanın ACTIVE olduğunu göreceksiniz.
 
 
- **AWS Web Arayüzünden IoT Sertifikasyonu ile IoT Thing ve IoT Policy'nin İlişkilendirilmesi - Robo1 **
+ **AWS Web Arayüzünden IoT Sertifikasyonu ile IoT Thing ve IoT Policy'nin İlişkilendirilmesi - Robo1**
 
     
 
