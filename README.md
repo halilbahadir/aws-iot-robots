@@ -22,7 +22,7 @@ servislerini deneyimlemenizi sağlamaya çalışacağız.
 Öncelikle bir AWS Hesabınına ihtiyacınız olacak. Bunun için https://portal.aws.amazon.com/billing/signup#/start kullanarak AWS Hesabı açabilirsiniz.
 
 
-![alt text](https://github.com/halilbahadir/aws-iot-robots/blob/master/aws-hesap-olusturma-ekrani.png)
+![alt text](https://github.com/halilbahadir/aws-iot-robots/blob/master/images/aws-hesap-olusturma-ekrani.png)
 
 
 #### Ajanda
