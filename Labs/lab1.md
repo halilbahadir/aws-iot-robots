@@ -141,14 +141,24 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 Öncelikle Cloud9 ortamına Python için IoT SDK kurulumu yapmamız gerekecek. Kurulum ile ilgili detayları ve son versiyonlarları linkten ulaşabilirsiniz: https://github.com/aws/aws-iot-device-sdk-python
 
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+[![AWS IoT Robots](http://img.youtube.com/vi/3qIXLX959is/0.jpg)](http://www.youtube.com/watch?v=3qIXLX959is "AWS IoT Robots Workshop")
+
 1. Aşağıda alternatif kurulum yöntemleri için gerekli açıklama ve komutları bulabilirsiniz. Komutları çalıştırmak için AWS Cloud9 **Terminal** kullanacağız. AWS Cloud9 IDE ekranında, **_bash_** tab'ında **iotRoboUser:~/environment: $** alanına komutları yazabilirsiniz. 
+
 
 1.1. PIP ile kurulum
 
 ```
-pip install AWSIoTPythonSDK
+sudo pip install AWSIoTPythonSDK
 ```
 
+Kurulum sırasında 'pip' versiyonu ile ilgili uyarı aldıysanız, 'pip' güncellemek için aşağıdaki komutu kullanabilirsiniz
+
+```
+pip install --upgrade pip
+```
 1.2. ya da alternatif olarak, kaynak kodu derleyerek kurulum
 
 ```
@@ -196,9 +206,11 @@ cd ~/environment
 wget -O root-CA.crt https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem
 ```
 
-7. Sonucunda aşağıdaki klasör yapısına sahip olacağız. <EKRAN GORUNTUSU>
+7. Sonucunda aşağıdaki klasör yapısına sahip olacağız. 
+
+![alt text](https://github.com/halilbahadir/aws-iot-robots/blob/master/images/Cloud9-Klasor-yapisi-ekrani.png)
   
-**AWS Web Arayüzünden IoT Thing Oluşturulması - Robo1 **
+**AWS Web Arayüzünden IoT Thing Oluşturulması - Robo1**
 
 Bu bölümde AWS IoT Core servini kullanarak AWS Web Arayüzünden IoT Thing, sertifika ve yetki politikasını oluşturacağız. Web arayüzü kullanarak manuel yöntemlerle IoT Thing yaratmak basit olsa da, IoT Thing sayısının yüzbinler binler, milyonlar mertebesinde olduğu durumlarda çok da basit olmayacaktır. O durumlarda [AWS IoT Device Management](https://aws.amazon.com/iot-device-management/) servisinin kullanılması uygun olacaktır. Bu aşamada Robo1 için Web Arayüzünü, Robp2 için ise CLI Komut satırını kullanarak tanımlamaları yapacağız. Sonrasında AWS IoT Core üzerinde herbir robot için oluşturduğumuz sertifika ve politikaları AWS Cloud9'a (Robotların simülatörü göreviyle) yükleyeceğiz.
 
@@ -232,6 +244,8 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 Bu bölümde IoT Thing'lerin **_yetkilendirmesinde_** kullanmak için IoT Policy oluşturulacaktır.
 
 Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+[![AWS IoT Robots](http://img.youtube.com/vi/X4uremdvmPs/0.jpg)](http://www.youtube.com/watch?v=X4uremdvmPs "AWS IoT Robots Workshop")
 
 1. Sol taraftaki menüden **Secure** tıklayın.
 
@@ -282,7 +296,7 @@ Bu bölümde kimlik doğrulama (authentication) için kullanılacak IoT Sertifik
 
 Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
-
+[![AWS IoT Robots](http://img.youtube.com/vi/Gam22Oc8LuE/0.jpg)](http://www.youtube.com/watch?v=Gam22Oc8LuE "AWS IoT Robots Workshop")
 
 1. Sol taraftaki menüden **Secure** tıklayın.
 
@@ -298,22 +312,50 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 7. Sayfanın en altındaki **Activate** butonuna tıklayın. Aktivasyondan sonra bu sertifika ile ilişkilendirilecek IoT Thing'leri AWS IoT Core ile bağlanabilir hale gelmiş oldu.  
 
-8. **A certificate for this thing** sertifikasını indirmek için **download** linkini tıklayın. ve dosyanın adını **_certificate.pem_** olarak değiştirin.
+8. **A certificate for this thing** sertifikasını indirmek için **download** linkini tıklayın. ve dosyanın adını **_certificate.pem.crt_** olarak değiştirin.
 
-9. **A private key** dosyasını indirmek için **download** linkini tıklayın. ve dosyanın adını **_privateKey.pem_** olarak değiştirin.
+9. **A private key** dosyasını indirmek için **download** linkini tıklayın. ve dosyanın adını **_PrivateKey.pem_** olarak değiştirin.
 
 10. Public Key dosyasını indirmeye ihtiyacımız yok. Zaten IoT Core içinde tanımlı olarak duruyor.
 
 11. **DONE** butonuna tıklayın. Dikkat _Attach a policy_ butonu değil..
 
-12. Öncelikle oluşturduğunuz Sertifika INACTIVE görünecektir, Sol taraftaki menüden **Certificates**  tekrar tıkladığınızda (ya da sayfayı güncelleyin) sertifikanın ACTIVE olduğunu göreceksiniz.
+12. Öncelikle oluşturduğunuz Sertifika INACTIVE görünecektir, sayfayı güncellediğinizde sertifikanın ACTIVE olduğunu göreceksiniz.
 
 
  **AWS Web Arayüzünden IoT Sertifikasyonu ile IoT Thing ve IoT Policy'nin İlişkilendirilmesi - Robo1**
 
-    
-
+Bu bölümde kimlik doğrulama için oluşturduğumuz sertifikaya, yetkilendirme için Policy ilişkilendireceğiz. Ayrıca bu sertifikayı kullanacak IoT Thing (Robo1)de sertifikayla ilişkilendirilecek.
  
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+[![AWS IoT Robots](http://img.youtube.com/vi/alx12k0NefU/0.jpg)](http://www.youtube.com/watch?v=alx12k0NefU "AWS IoT Robots Workshop")
+ 
+1. Sol taraftaki menüden **Secure** tıklayın.
+
+2. **Certificates** tıklayın. 
+
+3. Sertifika listesinden, bir önceki adımda oluşturduğunuz sertifikayı seçin ve sayfanın sağ üst köşesindeki 'Actions' butonuna tıklayın, menü açılacaktır (ya da kutunun sol üst köşesindeki 3 noktaya tıklayın, aynı menü açılacaktır.)
+
+4. Açılan menüden **Attach Policy** tıklayın. 
+
+5. Sayfada Policy listesinden, daha önce tanımladığımız **RoboPolicy** işaretleyip **Attach** butonuna tıklayın.
+
+6. Aynı şekilde, bu sefer 'Actions' menüsünden **Attach Thing** tıklayın
+
+7. Sayfada IoT Thing listesinden, daha önce tanımladığımız **Robo1** işaretleyip **Attach** butonuna tıklayın.
+
+Tebrikler, sertifikanıza IoT Policy ve IoT Thing ilişkisini başarı ile tanımladınız.!!
+
+
+**AWS Web Arayüzünden Sertifika ve Private Key dosyalarının Cloud9'a Yüklenmesi - Robo1**
+
+AWS IoT Core tarafında IoT Thing, Sertifika ve Policy tanımlarını yaptınız, aralarındaki ilişkileri kurguladınız. Sertifika ve Private Key dosyalarını da oluşturup, bilgisayarımıza indirdik. Asıl yapmamız gereken bu dosyaları IoT cihazına (robotlar) yüklemek, AWS Cloud9 ortamını robotları simüle etmek için kullandığımız için, dosyaları Cloud9'a yükleyeceğiz. Böylelikle robotlar kendi üzerinde yüklü sertifika, private key ve CA sertifikası ile AWS IoT servisine Policy'de tanımlanan yetkilerle bağlanabilecekler.
+
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+
+1. 
 
 
 
