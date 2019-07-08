@@ -111,7 +111,6 @@ IAM Ana sayfasındaki sol taraftaki menüden "Dashboard" tıklayın, ve sayfanı
 Tebrikler..!! Yeni Kullanıcınız ile sisteme giriş yaptınız. Şimdi biraz IoT servisinin kullanalım.
 
 
-
 **AWS Cloud9 Ortamı Oluşturma**
 
 AWS Cloud9, bulut tabanlı çalışan, herhangi bir kurulum yapmadan doğrudan browser üzerinde kod geliştirme, debug yapma ve kodu çalıştırma yapabileceğiniz bir yazılım geliştirme aracıdır (IDE). Cloud9 içinde kod editörü, debugger ve komut satır arayüz terminali bulunmaktadır.
@@ -354,8 +353,56 @@ AWS IoT Core tarafında IoT Thing, Sertifika ve Policy tanımlarını yaptınız
 
 Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
+[![AWS IoT Robots](http://img.youtube.com/vi/7ufh9htkJt4/0.jpg)](http://www.youtube.com/watch?v=7ufh9htkJt4 "AWS IoT Robots Workshop")
 
-1. 
+1. AWS Ana Ekranindan (Ana Ekrana gelmek için sol üst köşedeki AWS logosuna tıklayabilirsiniz).
+
+2. 'Find Services' alanına **Cloud9** yazın, açıan listeden Cloud9 tıklayın
+
+3. Cloud9 Dashboard açılacaktır. Ekranda kullandığınız IDE (IoTRobotsIDE) ortamını açmak için, **Open IDE** tıklayın.
+
+4. Cloud9 IDE'de sol taraftaki 'Enviornment' penceresinde, **Robo1** klasörünü seçin.
+
+5. Sayfanın üst kısmındaki menüden **File > Upload Local Files** tıklayın.
+
+6. Açılan pencerede **Select Files** tıklayın (Buton gri görünüyor ama disabled değil) ve '_certificate.pem.crt_' ve _'PrivateKey.pem'_ dosyalarını bilgisayarınızda bulup, ikisini de seçin.
+
+7. Dosyalar 'Robo1' klasörüne kopyalanacaktır. Dosyaların 'Robo1' klasörü altında olduğuna emin olun.
+
+8. Pencereyi sağ köşeden 'X' ile kapatabilirsiniz. 
 
 
+**AWS Komut Satırı kullanarak IoT Thing, Policy ve Certificate Oluşturulması - Robo2**
 
+Bu bölümde Robo2'nin AWS IoT Core Servisine bağlanabilmesi için gerekli olan Sertifika, Policy, IoT Thing kayıtlarını Cloud9 üzerinde AWS Komutlarını (CLI) kullanarak oluşturacağız. Robo2'de aynı yetkilere sahip olacağı için Policy'yi tekrar yaratmaya gerek olmayacak. Daha önce yarattığımız 'RoboPolicy' ile ilişkilendireceğiz.  
+
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+1. Cloud9 Terminal ekranında IoT Thing **Robo2** oluşturmak için aşağıdaki komutları çalıştırın
+
+```
+cd ~/environment/robo2
+aws iot create-thing --thing-name Robo2
+```
+
+2. Cloud9 Terminal ekranında IoT Certificate oluşturmak için aşağıdaki komutları çalıştırın. Komutla birlikte 'certicate.pem.crt' ve 'PrivateKey.pem' dosyaları üretilecekç Komut aynı zamanda  **certicateArn** çıktı olarak üretecek ve bu ARN (AWS Resource Names) bir sonraki komutta kullanacağız.  
+
+```
+aws iot create-keys-and-certificate --set-as-active --certificate-pem-outfile certicate.pem.crt --private-key-outfile PrivateKey.pem
+```
+
+3. Aşağıdaki komutla daha önce oluşturduğumuz **RoboPolicy** IoT Policy ile Sertifikayı ilişkilendireceğiz. Bir önceki Sertifika oluşturma komutunun çıktısı olan ARN _certificateArn_DEGISTIR_ ile değiştirilmelidir. ARN örnek olarak _arn:aws:iot:eu-west-1:447808059934:cert/2b0dc5c268d711bdd6828e1c60785b2303d8ac93445e0fef3a0c84877431f2e2_ gibidir. 
+
+Bu komut başarıyla çalıştığında herhangi bir çıktı vermeyecektir. 
+
+```
+aws iot attach-policy --policy-name RoboPolicy --target certificateArn_DEGISTIR
+```
+
+4. Aşağıdaki komutla daha önce oluşturduğumuz **robo2** IoT Thing ile Sertifikayı ilişkilendireceğiz. Bir önceki Sertifika oluşturma komutunun çıktısı olan ARN _certificateArn_DEGISTIR_ ile değiştirilmelidir. ARN örnek olarak _arn:aws:iot:eu-west-1:447808059934:cert/2b0dc5c268d711bdd6828e1c60785b2303d8ac93445e0fef3a0c84877431f2e2_ gibidir. 
+
+Bu komut başarıyla çalıştığında herhangi bir çıktı vermeyecektir. 
+
+```
+aws iot attach-thing-principal --thing-name robo2 --principal certificateArn_DEGISTIR
+```
