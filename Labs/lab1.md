@@ -378,6 +378,8 @@ Bu bölümde Robo2'nin AWS IoT Core Servisine bağlanabilmesi için gerekli olan
 
 Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
+[![AWS IoT Robots](http://img.youtube.com/vi/Mjs2K2FPM1g/0.jpg)](http://www.youtube.com/watch?v=Mjs2K2FPM1g "AWS IoT Robots Workshop")
+
 1. Cloud9 Terminal ekranında IoT Thing **Robo2** oluşturmak için aşağıdaki komutları çalıştırın
 
 ```
@@ -404,5 +406,29 @@ aws iot attach-policy --policy-name RoboPolicy --target certificateArn_DEGISTIR
 Bu komut başarıyla çalıştığında herhangi bir çıktı vermeyecektir. 
 
 ```
-aws iot attach-thing-principal --thing-name robo2 --principal certificateArn_DEGISTIR
+aws iot attach-thing-principal --thing-name Robo2 --principal certificateArn_DEGISTIR
 ```
+
+5. Komut satırı ile oluşturduğumuz Certificate ve IoT Thing (robo2). Ayrıca Sertifika ile IoT Policy (RoboPolicy) ve IoT Thing (robo2) arasındaki ilişkinin gerçekten oluşturulup oluşturulmadığını kontrol edelim. 
+
+6. Eğer Cloud9 Dashboardunda iseniz, ekranın üstündeki Cloud9 menüsünün sol üst köşedeki **AWS Cloud9** tıklayıp açılan menüde 'Go to Your Dashboard' seçin. Yeni bir browser sekmesinde AWS Cloud9 Dashboard'u açılacaktır. 
+
+7. AWS Cloud Dashboard'da üst menüden 'Services' tıklayıp, açılan servis listesinde **AWS IoT Core** seçin. Sorgu alanına 'IoT Core' yazarak listeyi filtreleyebilirsiniz.
+
+8.  AWS IoT Core Dashboard açılacaktır. Sol üst köşeden AWS Region IRELAND seçili olduğuna emin olun, değilse de listeden EU  (ireland) seçin.
+
+9. Sol menüden **Manage** tıklayın. Ekranda **robo2** IoT Thing görmüyorsanız sayfayı tekrar yüklemeyi deneyin, hala göremiyorsanız, tekrar 1. adımdan başlayıp, IoT Thing oluşturmayı deneyin. **robo2** listede varsa IoT Thing başarı ile oluşturulmuş demektir. 
+
+10. **robo2** tıklayın.
+
+11. Açılan IoT Thing penceresinde, sol menüden 'Security' tıklayın. Eğer sertifika başarılı ile yaratıldı (2. adım) ve IoT Thing ile ilişkilendirildi ise (4. adım) Sertifika kartını görebilirsiniz. Eğer göremiyorsanız, tekrar 2. adımdan başlayıp, IoT Certificate oluşturmayı deneyin.
+
+12. Ekrandaki sertifika kartına tıklayın.
+
+13. Açılan IoT Certificate penceresinde, sol menüden 'Policies' tıklayın.
+
+14. Eğer sertifika ile IoT Policy ilişkisi başarı ile yaratıldı ise (3. Adım) Ekranda **RoboPolicy** görebilirsiniz. Eğer göremiyorsanız, tekrar 3. adımdan başlayıp, IoT Certificate - IoT Policy ilişkisini kurmayı deneyin. Hatırlarsanız, IoT Policy'yi tüm robotlarda aynı yetki olmasını istediğimiz için bir kere oluşturup, tümüyle ilişkilendirme yapıyoruz. O yüzden tekrar bir IoT Policy oluşturmadan sadece sertifika ile ilişkilendirme yapıyoruz. 
+
+Tebrikler!! **robo2** IoT Thing başarı ile oluşturdunuz.
+
+
