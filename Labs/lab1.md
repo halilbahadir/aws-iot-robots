@@ -427,8 +427,95 @@ aws iot attach-thing-principal --thing-name Robo2 --principal certificateArn_DEG
 
 13. Açılan IoT Certificate penceresinde, sol menüden 'Policies' tıklayın.
 
-14. Eğer sertifika ile IoT Policy ilişkisi başarı ile yaratıldı ise (3. Adım) Ekranda **RoboPolicy** görebilirsiniz. Eğer göremiyorsanız, tekrar 3. adımdan başlayıp, IoT Certificate - IoT Policy ilişkisini kurmayı deneyin. Hatırlarsanız, IoT Policy'yi tüm robotlarda aynı yetki olmasını istediğimiz için bir kere oluşturup, tümüyle ilişkilendirme yapıyoruz. O yüzden tekrar bir IoT Policy oluşturmadan sadece sertifika ile ilişkilendirme yapıyoruz. 
+14. Eğer sertifika ile IoT Policy ilişkisi başarı ile yaratıldı ise (3. Adım) Ekranda **RoboPolicy** görebilirsiniz. Eğer göremiyorsanız, tekrar 3. adımdan başlayıp, IoT Certificate - IoT Policy ilişkisini kurmayı deneyin. Hatırlarsanız, IoT Policy'yi tüm robotlarda aynı yetki olmasını istediğimiz için bir kere oluşturup, tümüyle ilişkilendirme yapıyoruz. O yüzden tekrar bir IoT Policy oluşturmadan sadece sertifika ile ilişkilendiriyoruz. 
 
 Tebrikler!! **robo2** IoT Thing başarı ile oluşturdunuz.
 
+
+**Robotların IoT Core'a Bağlanması ve Mesaj Gönderimi **
+  
+ Buraya kadar olan bölümlerde robotların IoT Core'a bağlanıp mesaj göndermesi için gerekli olacak alt yapı, güvenlik ve uygulama bileşenlerini hazırladık. Şimdi artık robotların AWS IoT Core'a bağlanıp mesaj göndermeyi deneyeceğiz. Bunun için Python'da hazırladığımız uygulamayı kullanacağız.
+ 
+ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+
+
+1. Öncelikle aşağıdaki ekran görüntüsünde bir klasör yapısına sahip olduğunuza emin olun. Klasör ve dosya isimleri, dosyaların hangi klasörler altında olduğunun doğrulanması, uygulamanın çalışması için gerekli.
+
+![alt text](https://github.com/halilbahadir/aws-iot-robots/blob/master/images/Cloud9-Klasor-yapisi-ekrani-final.png)
+
+
+2. Uygulamanın IoT Core endpoint'ine bağlanması için uygulama (lab1.py) içinde ilgili satırda güncelleme yapmamız gerekiyor.
+
+3. AWS Web önyüzünden IoT Core Servisi ana ekranına geçiniz. (Üst menüden Services / IoT Core). Cloud9 IDE ayrı bir browser sekmesinde durmasında fayda var, tekrar geri döneceğiz
+
+4. IoT Core ekraninda, sol menüden **Settings** tıklayın.
+
+5. Ekranda çerçeve içinde yer alan **endpoint** adresini kopyalayın.
+
+6. Cloud9 IDE ekranında, **robo1** klasöründeki **lab1.py** dosyasını çift tıklayarak açın.
+
+7. Dosyanın içinde  * *mqttClient.configureEndpoint("ENDPIOINT BURAYA KOPYALANACAK",8883)* * satırını bulup, tırnak işaretlerinin arasına kopyaladığınız **endpoint** adresini 'ENDPIOINT BURAYA KOPYALANACAK' satırı yerine yapıştırın. 
+
+8. Dosyayi kaydedin. Menüde File/Save tıklayın ya da (Ctrl+S) ya da (Cmd+S)
+
+9.Terminal penceresinde, aşağıdaki komutları çalıştırın.
+
+```
+cd robo1
+python lab1.py
+```
+Aşağıdaki gibi bir çıktı göreceksiniz.
+
+```
+RoboName--> robo1
+IoT Core Baglandi
+Mesaj Gonderildi
+```
+
+ve her 5 sn'de 'Mesaj Gönderildi' diye ekranda görülmeye devam edecek.
+
+10. Ekranda mesaj gönderildi yazıyor ama gerçekten IoT Core'a iletiliyor mu? Bunu test etmek için IoT Core ekranına geri dönelim.
+
+11. IoT Core ekranında sol menüden **Test** tıklayın.
+
+12. **Subscription Topic** alanına **_ _iot/robots_ _** yazın ve **Subscribe to topic** butonuna tıklayın.
+
+13. Sayfanın altında _ _iot/robots_ _ başlığı altında 5 sn'de bir tekrarlayan mesajları göreceksiniz.
+
+```
+ {
+  "val3": "Value 3",
+  "val2": "Value 2",
+  "val1": "Value 1",
+  "message": "Test Message"
+  "name": "Robo1"
+}
+```
+
+14. Cloud9 Ekranına tekrar geri gelip, aynı adımları **robo2** içinde yapalım. 
+
+15. Cloud9 IDE ekranında, **robo2** klasöründeki **lab1.py** dosyasını çift tıklayarak açın.
+
+16. Dosyanın içinde  * *mqttClient.configureEndpoint("ENDPIOINT BURAYA KOPYALANACAK",8883)* * satırını bulup, tırnak işaretlerinin arasına kopyaladığınız **endpoint** adresini 'ENDPIOINT BURAYA KOPYALANACAK' satırı yerine yapıştırın. 
+
+17. Dosyayi kaydedin. Menüde File/Save tıklayın ya da (Ctrl+S) ya da (Cmd+S)
+
+18.Yeni bir terminal penceresinde (Terminal ekranın yanındaki + işaretine tıklayıp 'New Terminal' seçin), sonrasında yeni terminalde aşağıdaki komutları çalıştırın.
+
+```
+cd robo2
+python lab1.py
+```
+Aşağıdaki gibi bir çıktı göreceksiniz.
+
+```
+RoboName--> robo2
+IoT Core Baglandi
+Mesaj Gonderildi
+```
+
+ve her 5 sn'de 'Mesaj Gönderildi' diye ekranda görülmeye devam edecek.
+
+19. Tekrar IoT Core Test ekranında daha önce **iot/robots** 
 
