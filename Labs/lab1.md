@@ -438,6 +438,7 @@ Tebrikler!! **robo2** IoT Thing başarı ile oluşturdunuz.
  
  Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
+[![](http://img.youtube.com/vi/tRhKBehZE-A/0.jpg)](http://www.youtube.com/watch?v=tRhKBehZE-A "")
 
 
 1. Öncelikle aşağıdaki ekran görüntüsünde bir klasör yapısına sahip olduğunuza emin olun. Klasör ve dosya isimleri, dosyaların hangi klasörler altında olduğunun doğrulanması, uygulamanın çalışması için gerekli.
@@ -517,5 +518,32 @@ Mesaj Gonderildi
 
 ve her 5 sn'de 'Mesaj Gönderildi' diye ekranda görülmeye devam edecek.
 
-19. Tekrar IoT Core Test ekranında daha önce **iot/robots** 
+19. Tekrar IoT Core Test ekranında daha önce oluşturduğumuz **iot/robots** topic kaydında robo2'den gelen mesajları da görebilirsiniz.
 
+
+##TEBRIKLER....İlk Lab Başarı ile tamamladınız!!##
+
+**Şimdi Temizlik Zamanı**
+
+Lab çalışmasını bitirdikten sonra oluşturduğumuz AWS kaynaklarını silmekte fayda var. Eğer AWS Free Tier kapsamında değilseniz açık bıraktığınızı kaynaklarınız için küçük de olsa bir maliyetle karşılaşabilirsiniz.
+
+Öncelikle, robotları durduralım.
+
+1. Cloud9 IDE ekranında iki tane Terminal penceresi açmıştık. Birisi robo1 için, diğeri de robo2 için. Her iki terminalde de  **Ctrl+C** basarak AWS IoT Core haberleşmesini sonlandırın.
+
+2. Cloud9 IDE için sonraki lab'larda kullanmak üzere şimdilik silmeyeceğiz fakat 'STOP' durumuna geçebiliriz. 30 dakika içinde herhangi bir aktivite yapmadığınız durumda Cloud9 IDE otomatik olarak _ _sleep_ _ durumuna geçecektir. Fakat Amazon Linux sunucular saniye bazında fiyatlandırıldığı için, 30 dk beklemeden de Cloud9 IDE'nin üzerinde çalıştığı EC2 sunucusunu 'STOP' durumuna alabiliriz. Bunun için 
+
+3. Cloud9 arayüzünde sol üst köşedeki **AWS Cloud9** tıklayın. Açılan menüde **Go to your dashboard** seçin. Yeni browser sekmesinde Cloud9 web arayüzü açılacaktır.
+
+4. Üst menüden **Services** tıklayın. Açılan menüden Compute grubundan **EC2** seçin.
+
+5. EC2 dashbpard ekranında _ _Resources_ _ başlığı altında **Running Instances** tıklayın.
+
+6. Running EC2 listesinden **aws-cloud9** ile başlayan instance seçin.
+
+7. **Actions** butonuna tıklayın. Açılan menüden **Instance State / Stop** tıklayın. Kısa bir süre sonra Cloud9 üzerinde çalıştığı EC2 sunucusu STOP durumuna geçecektir. 
+
+Tekrar **START** durumuna geçmek için, yine **Actions** butonu ile **Instance State / Start** tıklayabilirsiniz.
+
+
+Şimdi Lab2 için hazırız..
