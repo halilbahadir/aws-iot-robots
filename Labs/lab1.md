@@ -156,7 +156,7 @@ sudo pip install AWSIoTPythonSDK
 Kurulum sırasında 'pip' versiyonu ile ilgili uyarı aldıysanız, 'pip' güncellemek için aşağıdaki komutu kullanabilirsiniz
 
 ```
-pip install --upgrade pip
+sudo pip install --upgrade pip
 ```
 1.2. ya da alternatif olarak, kaynak kodu derleyerek kurulum
 
