@@ -456,7 +456,7 @@ Tebrikler!! **robo2** IoT Thing başarı ile oluşturdunuz.
 
 6. Cloud9 IDE ekranında, **robo1** klasöründeki **lab1.py** dosyasını çift tıklayarak açın.
 
-7. Dosyanın içinde  * *mqttClient.configureEndpoint("ENDPIOINT BURAYA KOPYALANACAK",8883)* * satırını bulup, tırnak işaretlerinin arasına kopyaladığınız **endpoint** adresini 'ENDPIOINT BURAYA KOPYALANACAK' satırı yerine yapıştırın. 
+7. Dosyanın içinde  * *mqttClient.configureEndpoint("ENDPOINT BURAYA KOPYALANACAK",8883)* * satırını bulup, tırnak işaretlerinin arasına kopyaladığınız **endpoint** adresini 'ENDPOINT BURAYA KOPYALANACAK' satırı yerine yapıştırın. 
 
 8. Dosyayi kaydedin. Menüde File/Save tıklayın ya da (Ctrl+S) ya da (Cmd+S)
 
@@ -480,9 +480,9 @@ ve her 5 sn'de 'Mesaj Gönderildi' diye ekranda görülmeye devam edecek.
 
 11. IoT Core ekranında sol menüden **Test** tıklayın.
 
-12. **Subscription Topic** alanına **_ _iot/robots_ _** yazın ve **Subscribe to topic** butonuna tıklayın.
+12. **Subscription Topic** alanına **_iot/robots_** yazın ve **Subscribe to topic** butonuna tıklayın.
 
-13. Sayfanın altında _ _iot/robots_ _ başlığı altında 5 sn'de bir tekrarlayan mesajları göreceksiniz.
+13. Sayfanın altında _iot/robots_ başlığı altında 5 sn'de bir tekrarlayan mesajları göreceksiniz.
 
 ```
  {
@@ -498,7 +498,7 @@ ve her 5 sn'de 'Mesaj Gönderildi' diye ekranda görülmeye devam edecek.
 
 15. Cloud9 IDE ekranında, **robo2** klasöründeki **lab1.py** dosyasını çift tıklayarak açın.
 
-16. Dosyanın içinde  * *mqttClient.configureEndpoint("ENDPIOINT BURAYA KOPYALANACAK",8883)* * satırını bulup, tırnak işaretlerinin arasına kopyaladığınız **endpoint** adresini 'ENDPIOINT BURAYA KOPYALANACAK' satırı yerine yapıştırın. 
+16. Dosyanın içinde  * *mqttClient.configureEndpoint("ENDPOINT BURAYA KOPYALANACAK",8883)* * satırını bulup, tırnak işaretlerinin arasına kopyaladığınız **endpoint** adresini 'ENDPOINT BURAYA KOPYALANACAK' satırı yerine yapıştırın. 
 
 17. Dosyayi kaydedin. Menüde File/Save tıklayın ya da (Ctrl+S) ya da (Cmd+S)
 
