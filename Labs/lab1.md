@@ -307,9 +307,9 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 5. 'AWS IoT's Certicate Authority' otomatik olarak Public Key ve Private Key dosyalarını oluşturacaktır ki, bunları download etmemiz gerekiyor. Isterseniz kendi Certicate Authority (CA) yükleyebilirsiniz. Ya da mevcut Private Key kullanarak 'certificate signing request (CSR)' oluşturabilirim. Biz bu aşamada hızlı ve kolay olması açısından AWS IoT's CA kullanacağız.
 
-6. Sertifikalar oluşturuldu, şimdi tüm Public Key, Private Key ve Sertifika dosyasını makinanıza indirmeniz gerekecektir. 
+8. Sayfanın en altındaki **Activate** butonuna tıklayın. Aktivasyondan sonra bu sertifika ile ilişkilendirilecek IoT Thing'leri AWS IoT Core ile bağlanabilir hale gelmiş oldu.  
 
-7. Sayfanın en altındaki **Activate** butonuna tıklayın. Aktivasyondan sonra bu sertifika ile ilişkilendirilecek IoT Thing'leri AWS IoT Core ile bağlanabilir hale gelmiş oldu.  
+7. Sertifikalar oluşturuldu ve aktif hale getirildi, şimdi Private Key ve Sertifika dosyasını makinanıza indirmeniz gerekecektir. 
 
 8. **A certificate for this thing** sertifikasını indirmek için **download** linkini tıklayın. ve dosyanın adını **_certificate.pem.crt_** olarak değiştirin.
 
