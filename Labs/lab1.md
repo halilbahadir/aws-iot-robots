@@ -393,20 +393,20 @@ aws iot create-thing --thing-name Robo2
 aws iot create-keys-and-certificate --set-as-active --certificate-pem-outfile certificate.pem.crt --private-key-outfile PrivateKey.pem
 ```
 
-3. Aşağıdaki komutla daha önce oluşturduğumuz **RoboPolicy** IoT Policy ile Sertifikayı ilişkilendireceğiz. Bir önceki Sertifika oluşturma komutunun çıktısı olan ARN _certificateArn_DEGISTIR_ ile değiştirilmelidir. ARN örnek olarak _arn:aws:iot:eu-west-1:447808059934:cert/2b0dc5c268d711bdd6828e1c60785b2303d8ac93445e0fef3a0c84877431f2e2_ gibidir. 
+3. Aşağıdaki komutla daha önce oluşturduğumuz **RoboPolicy** IoT Policy ile Sertifikayı ilişkilendireceğiz. Bir önceki Sertifika oluşturma komutunun çıktısı olan ARN _SERTIFIKA_Arn_DEGISTIR_ ile değiştirilmelidir. ARN örnek olarak _arn:aws:iot:eu-west-1:447808059934:cert/2b0dc5c268d711bdd6828e1c60785b2303d8ac93445e0fef3a0c84877431f2e2_ gibidir. 
 
 Bu komut başarıyla çalıştığında herhangi bir çıktı vermeyecektir. 
 
 ```
-aws iot attach-policy --policy-name RoboPolicy --target certificateArn_DEGISTIR
+aws iot attach-policy --policy-name RoboPolicy --target SERTIFIKA_Arn_DEGISTIR
 ```
 
-4. Aşağıdaki komutla daha önce oluşturduğumuz **robo2** IoT Thing ile Sertifikayı ilişkilendireceğiz. Bir önceki Sertifika oluşturma komutunun çıktısı olan ARN _certificateArn_DEGISTIR_ ile değiştirilmelidir. ARN örnek olarak _arn:aws:iot:eu-west-1:447808059934:cert/2b0dc5c268d711bdd6828e1c60785b2303d8ac93445e0fef3a0c84877431f2e2_ gibidir. 
+4. Aşağıdaki komutla daha önce oluşturduğumuz **robo2** IoT Thing ile Sertifikayı ilişkilendireceğiz. Bir önceki Sertifika oluşturma komutunun çıktısı olan ARN _SERTIFIKA_Arn_DEGISTIR_ ile değiştirilmelidir. ARN örnek olarak _arn:aws:iot:eu-west-1:447808059934:cert/2b0dc5c268d711bdd6828e1c60785b2303d8ac93445e0fef3a0c84877431f2e2_ gibidir. 
 
 Bu komut başarıyla çalıştığında herhangi bir çıktı vermeyecektir. 
 
 ```
-aws iot attach-thing-principal --thing-name Robo2 --principal certificateArn_DEGISTIR
+aws iot attach-thing-principal --thing-name Robo2 --principal SERTIFIKA_Arn_DEGISTIR
 ```
 
 5. Komut satırı ile oluşturduğumuz Certificate ve IoT Thing (robo2). Ayrıca Sertifika ile IoT Policy (RoboPolicy) ve IoT Thing (robo2) arasındaki ilişkinin gerçekten oluşturulup oluşturulmadığını kontrol edelim. 
