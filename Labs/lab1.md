@@ -390,7 +390,7 @@ aws iot create-thing --thing-name Robo2
 2. Cloud9 Terminal ekranında IoT Certificate oluşturmak için aşağıdaki komutları çalıştırın. Komutla birlikte 'certicate.pem.crt' ve 'PrivateKey.pem' dosyaları üretilecekç Komut aynı zamanda  **certicateArn** çıktı olarak üretecek ve bu ARN (AWS Resource Names) bir sonraki komutta kullanacağız.  
 
 ```
-aws iot create-keys-and-certificate --set-as-active --certificate-pem-outfile certicate.pem.crt --private-key-outfile PrivateKey.pem
+aws iot create-keys-and-certificate --set-as-active --certificate-pem-outfile certificate.pem.crt --private-key-outfile PrivateKey.pem
 ```
 
 3. Aşağıdaki komutla daha önce oluşturduğumuz **RoboPolicy** IoT Policy ile Sertifikayı ilişkilendireceğiz. Bir önceki Sertifika oluşturma komutunun çıktısı olan ARN _certificateArn_DEGISTIR_ ile değiştirilmelidir. ARN örnek olarak _arn:aws:iot:eu-west-1:447808059934:cert/2b0dc5c268d711bdd6828e1c60785b2303d8ac93445e0fef3a0c84877431f2e2_ gibidir. 
