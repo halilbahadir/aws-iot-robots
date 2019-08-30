@@ -355,9 +355,9 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 [![AWS IoT Robots](http://img.youtube.com/vi/7ufh9htkJt4/0.jpg)](http://www.youtube.com/watch?v=7ufh9htkJt4 "AWS IoT Robots Workshop")
 
-1. AWS Ana Ekranindan (Ana Ekrana gelmek için sol üst köşedeki AWS logosuna tıklayabilirsiniz).
+1. AWS Ana Ekranından (Ana Ekrana gelmek için sol üst köşedeki AWS logosuna tıklayabilirsiniz).
 
-2. 'Find Services' alanına **Cloud9** yazın, açıan listeden Cloud9 tıklayın
+2. 'Find Services' alanına **Cloud9** yazın, açılan listeden Cloud9 tıklayın
 
 3. Cloud9 Dashboard açılacaktır. Ekranda kullandığınız IDE (IoTRobotsIDE) ortamını açmak için, **Open IDE** tıklayın.
 
