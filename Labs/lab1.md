@@ -361,7 +361,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 3. Cloud9 Dashboard açılacaktır. Ekranda kullandığınız IDE (IoTRobotsIDE) ortamını açmak için, **Open IDE** tıklayın.
 
-4. Cloud9 IDE'de sol taraftaki 'Enviornment' penceresinde, **Robo1** klasörünü seçin.
+4. Cloud9 IDE'de sol taraftaki 'Environment' penceresinde, **Robo1** klasörünü seçin.
 
 5. Sayfanın üst kısmındaki menüden **File > Upload Local Files** tıklayın.
 
