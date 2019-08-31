@@ -7,5 +7,6 @@
   
   Bu lab çalışmasında aşağıdaki mimari ve akışı gerçekleştireceğiz.
 
-![alt text](https://github.com/halilbahadir/aws-iot-robots/blob/master/images/iot-lab2.jpg)
+![alt text](https://github.com/halilbahadir/aws-iot-robots/blob/master/images/iot-lab2.png)
+
 
