@@ -10,3 +10,14 @@
 ![alt text](https://github.com/halilbahadir/aws-iot-robots/blob/master/images/iot-lab2.png)
 
 
+### Amazon SNS (Amazon Simple Notification Service)
+
+**SNS Topic Tanımlama**
+
+Bu bölümde SNS Topic tanımlayıp, bır eposta adresi kullanarak o SNS Topic'e abone olup, abonelik için eposta adresine gelen epostadaki linki kullanıp onay vereceğiz.
+
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+
+1. AWS Web Arayüzünden giriş yapın ve AWS Region olarak IRELAND (eu-west-1) seçili olduğundan emin olun.
+2. Sol üst köşedeki 'Services'
