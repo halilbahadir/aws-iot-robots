@@ -124,10 +124,10 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 ```
 SELECT 
-  roboName + ' pil seviyesi şu an ' + battery + ' seviyesinde, pili şarj etmek gerekiyor. ' +  roboName + ' şu an '  + attitude + ' ve '  + longtitude + ' koodrinatlarında bulunuyor.'  AS batteryQ
+  roboName + ' pil seviyesi şu an ' + battery + ' seviyesinde, pili şarj etmek gerekiyor. ' +  roboName + ' şu an '  + latitude + ' ve '  + longtitude + ' koodrinatlarında bulunuyor.' AS batteryQ
 FROM 'iot/robots'
 WHERE
- battery < 10  
+ battery < 10   
 
 ```
 
