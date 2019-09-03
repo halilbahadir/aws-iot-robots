@@ -192,7 +192,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 9. _S3 Bucket_ listesinden bir önceki bölümde oluşturduğunuz S3 bucket seçiniz. Benim senaryoda **hb-iot-robo-messages** seçiyorum. 
 
-10. _Key_ alanına  yine 'adınızın soyadınızın bas harfleri' girin.
+10. _Key_ alanına  **${topic()}/${timestamp()}** girin. Bu alana değişken bir değer vermemiz gerekiyor ki her mesaj farklı dosya olarak kaydedilsin, yoksa statik isim verirsek aynı dosyanın üzere yazar ve eski mesajları kaybedersiniz. Bu sebeple ?_Topic_ alanına IoT Topic ismi geliyor olacak ki S3'e klasör olarak eklenecek. _timestamp_ ise mesajın tarihi, bu da tekilliği sağlayacak.
  
 11. _Choose or create a role to grant AWS IoT access to perform this action_ alanında **Select** tıklayın
 
@@ -213,6 +213,22 @@ FROM 'iot/robots'
 16. **Create Rule** butonuna tıklayın. 
 
 Tebrikler.. IoT Rule başarı ile tanımlandı..
+
+
+
+**Roboları Çalıştırma**
+
+
+
+
+17. Sol üst köşedeki 'Services' menüsünden S3 seçip, S3 Dashboard'u açın.
+
+18.  _S3 Bucket_ listesinden bir önceki bölümde oluşturduğunuz S3 bucket tıklayın. Benim senaryoda **hb-iot-robo-messages** 
+
+19. **iot** klasörü tıklayın.. **robots** tıklayın.. _robots_ klasörü altında IoT Mesajlarının kaydedildiği dosyaları göreceksiniz. Sağ üst köşede EU (Ireland) yanında yer alan _güncelle_ butonuna tıklayıp, klasörün içini güncelleyebilirsiniz.
+
+ **iot/robots** IoT Topic adı. Herbir dosyanın adı da mesajın geldiği zaman.eııfcckgtuctgvktlgrvlfruvtrbrccrcdhırrvgrukj
+ 
 
 
 
