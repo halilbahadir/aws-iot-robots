@@ -145,7 +145,74 @@ Bu aşamada da ise IoT Core'a gelen MQTT mesajları üzerinde sonraki aşamalard
 
 Bu lab çalışmasında aşağıdaki mimari ve akışı gerçekleştireceğiz.
 
-https://github.com/halilbahadir/aws-iot-robots/blob/master/images/iot-lab2-s3.jpg
+![alt text](https://github.com/halilbahadir/aws-iot-robots/blob/master/images/iot-lab2-s3.jpg)
+
+
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+
+1. AWS Web Arayüzünden giriş yapın ve AWS Region olarak IRELAND (eu-west-1) seçili olduğundan emin olun.
+
+2. Sol üst köşedeki 'Services' menüsünden S3 seçip, S3 Dashboard'u açın.
+
+3. **Create Bucket** butonuna tıklayın.
+
+4. _Bucket Name_ alanına DNS uyumlu bir S3 bucket ismi gerektiği için  'adınızın soyadınızın bas harfleri' ile birlikte **-iot-robo-messages** yazın. Örneğin benim için **hb-iot-robo-messages** 
+
+5. _Region_ olarak **EU(Ireland)**
+
+6. Next..Next..Next.. **Create Bucket** butonlarına tıklayın.
+
+7. S3 bucket listesinde yeni oluşturduğunuz bucket'ı göreceksiniz.
+
+Tebrikler!! S3 Bucket başarı ile oluşturdunuz.
+
+**IoT Rule Tanımlama (S3)**
+
+Bu bölümde, Roboların tüm gönderdiği mesajları (SQL sorgusu ile) alan IoT Rule tanımlayacağız ve bu mesajları S3'e kaydedeceğiz. Sonrasında bu verileri analiz için kullanabiliriz.
+
+Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
+
+
+1. AWS Web Arayüzünden giriş yapın ve AWS Region olarak IRELAND (eu-west-1) seçili olduğundan emin olun.
+
+2. Sol üst köşedeki 'Services' menüsünden IoT Core seçip, IoT Core Dashboard'u açın.
+
+3. IoT Core Rule tanımlamak için sol menüden **Act** tıklayın.
+
+4. Sağ üstteki **Create** butonuna tıklayın.
+
+5. _Name_ alanına **AllMsgToS3** yazın.
+
+6. _Set one or more actions_ altındaki **Add Action** butonuna tıklayın.
+
+7. Listeden **Store a message in an Amazon S3 bucket** seçin.
+
+8. Listenin en altındaki **Configure Action** butonuna tıklayın.
+
+9. _S3 Bucket_ listesinden bir önceki bölümde oluşturduğunuz S3 bucket seçiniz. Benim senaryoda **hb-iot-robo-messages** seçiyorum. 
+
+10. _Key_ alanına  yine 'adınızın soyadınızın bas harfleri' girin.
+ 
+11. _Choose or create a role to grant AWS IoT access to perform this action_ alanında **Select** tıklayın
+
+12. Listeden **IoTRobotsRole** en sağında yer alan **Select** tıklayın.
+
+13. **Add Action** butonuna tıklayın. S3 Action tanımı IoT Rule'a eklendi.
+
+14. _Rule query statement_ alanındaki siyah kutunun içine imleci götürün ve tıklayın. Böylece bu alana SQL sorgusu yazabileceğiz. 
+
+15. SQL Sorgu alanına aşağıdaki sorguyu yazın.
+
+```
+SELECT * as AllMsgQ
+FROM 'iot/robots'   
+
+```
+
+16. **Create Rule** butonuna tıklayın. 
+
+Tebrikler.. IoT Rule başarı ile tanımlandı..
 
 
 
