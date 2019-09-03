@@ -52,7 +52,7 @@ Bir önceki bölümde tanımladığımız SNS Topic'e  AWS IoT servislerinden me
 
 Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
-
+**VIDEO**
 
 1. AWS Web Arayüzünden giriş yapın ve AWS Region olarak IRELAND (eu-west-1) seçili olduğundan emin olun.
 
@@ -83,7 +83,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 Tebrikler.!!! Bir sonraki adımda kullanacağımız IAM Rolü başarı ile oluşturuldu.
 
 
-**IoT Rule Tanımlama**
+**IoT Rule Tanımlama (SNS)**
 
 Bu bölümde, Roboların pillerinin %10 altına düştüğü durumları takip eden bir SQL sorgusunu kullanan IoT Rule tanımlayacağız. Eğer bu durumda olan bir robo varsa, ilk bölümde oluşturduğumuz SNS Topic'e mesaj publish edeceğiz.
 
@@ -136,5 +136,17 @@ Bu sorguda **iot/robots** IoT Topic'deki (ki Lab 1 de oluşturmuştuk) **battery
 17. **Create Rule** butonuna tıklayın. 
 
 Tebrikler.. IoT Rule başarı ile tanımlandı..
+
+### Amazon S3 (Amazon Simple Storage Service)
+
+İlk tanımladığımız IoT Rule ile Robo'ların pil seviyesinde %10 altına düşme durumu olduğunda _gerçek zamanda_, son kullanıcılara (fabrikadaki operatörler) eposta gönderen bir kural tanımladık. 
+
+Bu aşamada da ise IoT Core'a gelen MQTT mesajları üzerinde sonraki aşamalarda kullanabileceğimiz _batch_ analiz çalışması yapabilmek için gelen tüm mesajları AWS S3 üzerinde saklamak için gerekli IoT Rule tanımlayalım.
+
+Bu lab çalışmasında aşağıdaki mimari ve akışı gerçekleştireceğiz.
+
+https://github.com/halilbahadir/aws-iot-robots/blob/master/images/iot-lab2-s3.jpg
+
+
 
 
