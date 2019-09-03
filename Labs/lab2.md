@@ -218,16 +218,52 @@ Tebrikler.. IoT Rule başarı ile tanımlandı..
 
 **Roboları Çalıştırma**
 
+Bu bölümde, robotları Cloud9 üzerinden aktif hale getirip, 5 sn'de bir IoT Core'a MQTT mesajı göndermesini sağlayacağız. Bunun için gerekli kodu zaten Lab 1'de hazırlamıştık. Bu aşamada sadece kodları çalıştırmamız yeterli.
 
 
+1. Sol üst köşedeki 'Services' menüsünden Cloud9 seçip, Cloud9 Dashboard'u açın.
 
-17. Sol üst köşedeki 'Services' menüsünden S3 seçip, S3 Dashboard'u açın.
+2. Ekranda kullandığınız IDE (**IoTRobotsIDE**) ortamını açmak için, Open IDE tıklayın.
+
+3. Cloud9 IDE'de ekranın alt tarafındaki 'Terminal' penceresinde aşağıdaki komutları çalıştırın.
+
+```
+cd robo1
+python lab1.py
+
+```
+4. Aşağıdaki gibi bir çıktı göreceksiniz.
+
+```
+RoboName--> robo1
+IoT Core Baglandi
+Mesaj Gonderildi
+```
+
+5. Kod içinde random olusturulan pil durumu, lokasyon için koordinatlar, robotun o an meşgul olup olmadığı gibi değerler IoT Core'a MQTT mesajı olarak iletiliyor.
+
+Eğer random üretilen pil değeri %10 altında ise IoT Rule tanımı ile SNS üzerinden eposta alıyor olacaksınız. Aynı zamanda her bir MQTT mesajı S3 üzerinde bir dosyaya yazılıp saklanıyor olacak. 
+
+6. Sol üst köşedeki 'Services' menüsünden S3 seçip, S3 Dashboard'u açın.
 
 18.  _S3 Bucket_ listesinden bir önceki bölümde oluşturduğunuz S3 bucket tıklayın. Benim senaryoda **hb-iot-robo-messages** 
 
 19. **iot** klasörü tıklayın.. **robots** tıklayın.. _robots_ klasörü altında IoT Mesajlarının kaydedildiği dosyaları göreceksiniz. Sağ üst köşede EU (Ireland) yanında yer alan _güncelle_ butonuna tıklayıp, klasörün içini güncelleyebilirsiniz.
 
- **iot/robots** IoT Topic adı. Herbir dosyanın adı da mesajın geldiği zaman.eııfcckgtuctgvktlgrvlfruvtrbrccrcdhırrvgrukj
+ **iot/robots** IoT Topic adı. Herbir dosyanın adı da mesajın geldiği zaman.
+ 
+ 20. Dosyalardan birinin üzerinde tıklayın. Açılan ekranda **Download** butonuna tıklayıp, dosyayı bilgisayarınıza indirin.
+ 
+ 21. Dosyayı herhangi bir text editörü ile açtığınızda, aşağıdakine benzer bir bilgiyi göreceksiniz.
+ 
+ ```
+ {"AllMsgQ":{"battery":72,"longtitude":-138.80774898211118,"roboName":"robo1","latitude":-35.654477328777986,"isBusy":0,"ID":37611}}
+ 
+ ```
+ 
+ **AllMsq** SQL Sorgusuna verdiğimiz isim. Diğer alanlar ise Robo1 adındaki robotun o andaki durumu ile ilgili bilgiler. 
+ 
+ 
  
 
 
