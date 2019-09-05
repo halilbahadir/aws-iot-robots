@@ -41,7 +41,7 @@ message ={
   'latitude': random.uniform(-90.0,+90.0),
   'longtitude': random.uniform(-180.0,+180.0),
   'battery': random.randint(1,101),
-  'isBusy': random.randint(0,2),
+  'isBusy': random.randint(0,1),
   'ID': random.randint(10000,100000)
 }
 
