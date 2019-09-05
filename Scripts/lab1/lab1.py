@@ -26,7 +26,7 @@ print("RoboName--> "+roboName)
 mqttClient = AWSIoTMQTTClient(roboName)
 
 #Ayarlar sayfasindaki IoTEndpoint buraya ekleyin
-mqttClient.configureEndpoint("a100y3wur4j1gq-ats.iot.eu-central-1.amazonaws.com",8883)
+mqttClient.configureEndpoint("a100y3wur4j1gq-ats.iot.eu-west-1.amazonaws.com",8883)
 mqttClient.configureCredentials("../root-CA.crt","PrivateKey.pem","certificate.pem.crt")
 
 #JSON formatina encode eden fonksiyon
@@ -37,7 +37,7 @@ mqttClient.toJSON=toJSON
 
 #Degiskenleri ve MQTT mesaji tanimlari
 message ={
-  'name': roboName,
+  'roboName': roboName,
   'latitude': random.uniform(-90.0,+90.0),
   'longtitude': random.uniform(-180.0,+180.0),
   'battery': random.randint(1,101),
@@ -57,7 +57,7 @@ def send():
 
 def randomRoboGenerator():
     message ={
-        'name': roboName,
+        'roboName': roboName,
         'latitude': random.uniform(-90.0,+90.0),
         'longtitude': random.uniform(-180.0,+180.0),
         'battery': random.randint(1,100),
@@ -77,6 +77,3 @@ while True:
     time.sleep(5)
 
 mqttClient.disconnect()
-
-
-
