@@ -240,21 +240,36 @@ IoT Core Baglandi
 Mesaj Gonderildi
 ```
 
-5. Kod içinde random olusturulan pil durumu, lokasyon için koordinatlar, robotun o an meşgul olup olmadığı gibi değerler IoT Core'a MQTT mesajı olarak iletiliyor.
+5. Cloud9 IDE'de yeni bir 'Terminal' penceresinde açıp, aşağıdaki komutlar ile Robo2'yi de çalıştırın.
+
+```
+cd robo2
+python lab1.py
+
+```
+6. Aşağıdaki gibi bir çıktı göreceksiniz.
+
+```
+RoboName--> robo2
+IoT Core Baglandi
+Mesaj Gonderildi
+```
+
+7. Kod içinde random olusturulan pil durumu, lokasyon için koordinatlar, robotun o an meşgul olup olmadığı gibi değerler IoT Core'a MQTT mesajı olarak iletiliyor.
 
 Eğer random üretilen pil değeri %10 altında ise IoT Rule tanımı ile SNS üzerinden eposta alıyor olacaksınız. Aynı zamanda her bir MQTT mesajı S3 üzerinde bir dosyaya yazılıp saklanıyor olacak. 
 
-6. Sol üst köşedeki 'Services' menüsünden S3 seçip, S3 Dashboard'u açın.
+8. Sol üst köşedeki 'Services' menüsünden S3 seçip, S3 Dashboard'u açın.
 
-18.  _S3 Bucket_ listesinden bir önceki bölümde oluşturduğunuz S3 bucket tıklayın. Benim senaryoda **hb-iot-robo-messages** 
+9.  _S3 Bucket_ listesinden bir önceki bölümde oluşturduğunuz S3 bucket tıklayın. Benim senaryoda **hb-iot-robo-messages** 
 
-19. **iot** klasörü tıklayın.. **robots** tıklayın.. _robots_ klasörü altında IoT Mesajlarının kaydedildiği dosyaları göreceksiniz. Sağ üst köşede EU (Ireland) yanında yer alan _güncelle_ butonuna tıklayıp, klasörün içini güncelleyebilirsiniz.
+10. **iot** klasörü tıklayın.. **robots** tıklayın.. _robots_ klasörü altında IoT Mesajlarının kaydedildiği dosyaları göreceksiniz. Sağ üst köşede EU (Ireland) yanında yer alan _güncelle_ butonuna tıklayıp, klasörün içini güncelleyebilirsiniz.
 
  **iot/robots** IoT Topic adı. Herbir dosyanın adı da mesajın geldiği zaman.
  
- 20. Dosyalardan birinin üzerinde tıklayın. Açılan ekranda **Download** butonuna tıklayıp, dosyayı bilgisayarınıza indirin.
+ 11. Dosyalardan birinin üzerinde tıklayın. Açılan ekranda **Download** butonuna tıklayıp, dosyayı bilgisayarınıza indirin.
  
- 21. Dosyayı herhangi bir text editörü ile açtığınızda, aşağıdakine benzer bir bilgiyi göreceksiniz.
+ 12. Dosyayı herhangi bir text editörü ile açtığınızda, aşağıdakine benzer bir bilgiyi göreceksiniz.
  
  ```
  {"AllMsgQ":{"battery":72,"longtitude":-138.80774898211118,"roboName":"robo1","latitude":-35.654477328777986,"isBusy":0,"ID":37611}}
@@ -264,8 +279,27 @@ Eğer random üretilen pil değeri %10 altında ise IoT Rule tanımı ile SNS ü
  **AllMsq** SQL Sorgusuna verdiğimiz isim. Diğer alanlar ise Robo1 adındaki robotun o andaki durumu ile ilgili bilgiler. 
  
  
- 
+ **Şimdi Temizlik Zamanı**
+
+Lab çalışmasını bitirdikten sonra oluşturduğumuz AWS kaynaklarını silmekte fayda var. Eğer AWS Free Tier kapsamında değilseniz açık bıraktığınızı kaynaklarınız için küçük de olsa bir maliyetle karşılaşabilirsiniz.
+
+Öncelikle, robotları durduralım.
+
+1. Cloud9 IDE ekranında iki tane Terminal penceresi açmıştık. Birisi robo1 için, diğeri de robo2 için. Her iki terminalde de  **Ctrl+C** basarak AWS IoT Core haberleşmesini sonlandırın.
+
+2. Cloud9 IDE için sonraki lab'larda kullanmak üzere şimdilik silmeyeceğiz fakat 'STOP' durumuna geçebiliriz. 30 dakika içinde herhangi bir aktivite yapmadığınız durumda Cloud9 IDE otomatik olarak _ _sleep_ _ durumuna geçecektir. Fakat Amazon Linux sunucular saniye bazında fiyatlandırıldığı için, 30 dk beklemeden de Cloud9 IDE'nin üzerinde çalıştığı EC2 sunucusunu 'STOP' durumuna alabiliriz. Bunun için 
+
+3. Cloud9 arayüzünde sol üst köşedeki **AWS Cloud9** tıklayın. Açılan menüde **Go to your dashboard** seçin. Yeni browser sekmesinde Cloud9 web arayüzü açılacaktır.
+
+4. Üst menüden **Services** tıklayın. Açılan menüden Compute grubundan **EC2** seçin.
+
+5. EC2 dashbpard ekranında _ _Resources_ _ başlığı altında **Running Instances** tıklayın.
+
+6. Running EC2 listesinden **aws-cloud9** ile başlayan instance seçin.
+
+7. **Actions** butonuna tıklayın. Açılan menüden **Instance State / Stop** tıklayın. Kısa bir süre sonra Cloud9 üzerinde çalıştığı EC2 sunucusu STOP durumuna geçecektir. 
+
+Tekrar **START** durumuna geçmek için, yine **Actions** butonu ile **Instance State / Start** tıklayabilirsiniz.
 
 
-
-
+Şimdi Lab3 için hazırız..
