@@ -28,10 +28,10 @@ Bu bölümde, Robolar Shadow'larını oluşturup, shadow'lar üzerinden statü d
 
 5. **lab3-1.py** dosyası üzerinde çift tıklayın ve dosyayı açın.
 
-6. Aşağıdaki kod parçasını kopyalayıp, **lab3-1.py** dosyası içine yapıştırın.
+6. Aşağıdaki linkten açıp, kod parçasını kopyalayıp, **lab3-1.py** dosyası içine yapıştırın.
 
 ```
-KOD BURAYA GELECEK..
+https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab3/lab3-1.py 
 
 ```
 
@@ -133,7 +133,7 @@ Bu bölümde AWS IoT shadow arayüzünden yaptığımız değişikliği, kod üz
 4. Aşağıdaki kod parçasını kopyalayıp, **lab3-2.py** dosyası içine yapıştırın.
 
 ```
-KOD BURAYA GELECEK..
+https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab3/lab3-2.py
 
 ```
 
