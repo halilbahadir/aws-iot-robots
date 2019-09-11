@@ -188,13 +188,15 @@ Listening for Delta Messages
 
 17. **Shadow State** güncellendi. Güncellenme ile ilgili bilgini etkisini, çalıştırdığımız **lab3-2.py** terminalinden görebiliriz.
 
-18. Browser'da Cloud9'un açık olduğu sekmeye geçip, daha önce çalıştırdığımız kodun _terminal_ deki çıktısına bakalım.
+18. Browser'da Cloud9'un açık olduğu sekmeye geçip, daha önce çalıştırdığımız kodun _terminal_ deki çıktısına bakalım. Aşağıdakine benzer bir çıktıyı sizde göreceksiniz.
 
 ```
 {"version":15,"timestamp":1568223725,"state":{"headLight":"OFF"},"metadata":{"headLight":{"timestamp":1568223725}}}
 
 ```
 19. Shadow Objesinde yaptığımız değişiklik, IoT Topic üzerine atandı. IoT Thing bağlandığı durumda güncellemeyi üzerine yansıtacaktır.
+
+20. Terminal ekranı üzerinde iken ctrl+C ile uygulamayı sonlandırabilirsiniz.
 
 Tebrikler IoT Thing Shadow adımını da tamamladınız.
 
