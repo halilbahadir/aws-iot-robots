@@ -26,7 +26,7 @@ print("RoboName--> "+roboName)
 mqttClient = AWSIoTMQTTClient(roboName)
 
 #Ayarlar sayfasindaki IoTEndpoint buraya ekleyin
-mqttClient.configureEndpoint("a100y3wur4j1gq-ats.iot.eu-west-1.amazonaws.com",8883)
+mqttClient.configureEndpoint("ENDPOINT BURAYA KOPYALANACAK",8883)
 mqttClient.configureCredentials("../root-CA.crt","PrivateKey.pem","certificate.pem.crt")
 
 #JSON formatina encode eden fonksiyon
