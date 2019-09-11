@@ -167,3 +167,34 @@ Listening for Delta Messages
 12. Ekranda _Robo1_ için en son oluşturulan Shadow dokümanını görebilirsiniz.
 
 13. _Shadow Document_ başlığının en solunda yer alan **Edit** butonuna tıklayın.
+
+14. _Shadow State_ alanı editör haline aldığı için, doküman üzerinde değişiklik yapabiliriz. 
+
+15. Desired State alanını ON durumundan OFF durumuna getirmek için aşağıdaki değişikliği yapın ya da tümğnğ kopyalayıp, mevcutu silerek kopyalayın.
+
+```
+{
+  "desired": {
+    "headLight": "Off"
+  },
+  "delta": {
+    "headLight": "On"
+  }
+}
+
+```
+
+16. **Save** tıklayın.
+
+17. **Shadow State** güncellendi. Güncellenme ile ilgili bilgini etkisini, çalıştırdığımız **lab3-2.py** terminalinden görebiliriz.
+
+18. Browser'da Cloud9'un açık olduğu sekmeye geçip, daha önce çalıştırdığımız kodun _terminal_ deki çıktısına bakalım.
+
+```
+{"version":15,"timestamp":1568223725,"state":{"headLight":"OFF"},"metadata":{"headLight":{"timestamp":1568223725}}}
+
+```
+19. Shadow Objesinde yaptığımız değişiklik, IoT Topic üzerine atandı. IoT Thing bağlandığı durumda güncellemeyi üzerine yansıtacaktır.
+
+Tebrikler IoT Thing Shadow adımını da tamamladınız.
+
