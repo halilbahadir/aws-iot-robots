@@ -40,23 +40,28 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 ```json
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:*",
-        "cloud9:*",
-        "iam:*",
-        "logs:*",
-        "ec2:*",
-        "cloudwatch:*",
-        "greengrass:*",
-        "tag:getResources"
-        ],
-      "Resource": "*"
-    }
-  ] 
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "greengrass:*",
+                "iot:*",
+                "iotanalytics:*",
+                "cloud9:*",
+                "lambda:*",
+                "iam:*",
+                "logs:*",
+                "ec2:*",
+                "cloudwatch:*",
+                "sns:*",
+                "s3:*",
+                "kms:*",
+                "tag:getResources"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 
 ```
