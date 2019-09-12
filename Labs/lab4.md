@@ -95,4 +95,9 @@ Mesaj Alindi iot/mesaj/robo1: Merhaba
 Mesaj Alindi iot/mesaj/robo2: Sana da merhaba
 ```
 
-21. 
+21. Her iki terminalde de uygulamayı durdurmak için **Ctrl+C** basınız. 
+
+
+Tebrikler..!! Robotlar arasında mesaj gönderimini başarı ile tamamladınız.
+
+
