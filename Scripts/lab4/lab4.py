@@ -1,6 +1,3 @@
-
-# Import the AWS IoT Device SDK
-
 import sys
 import ssl
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
