@@ -49,7 +49,35 @@ Bu aşamada AWS IoT Core Web arayüzünü kullanarak, Greengrass için gerekli k
 
 10. **Finish** tıklayın.
 
+11. Oluşturduğumuz **IoTRoboGGGroup** _Greengrass Group_ sayfası açıldı. 
+
+12. Ekranın solundaki menüden **Cores** tıklayın.
+
+13. _IoTRoboGGGroup_ ile ilişkilendirilmiş **IoTRoboGGGroup_Core** Greengrass Core görebilirsiniz.
+
+14. Greengrass ekranından çıkıp, IoT Core sayfasına dönmek için ekranın sol üstündeki gri kutudaki ok --> işaretini tıklayın.
+
+15. IoT Core sayfası menüsünden **Manage** tıklayın. 
+
+16. IoT Thing listesine yeni bir **IoTRoboGGGroup_Core** adında Thing eklediğini görüyoruz. Zira Greengrass Core, IoT Core için diğer Robo'lar gibi IoT Thing olarak çalışıyor. 
+
+17. Sayfadaki **IoTRoboGGGroup_Core** tıklayın.
+
+18. Menüden **Security** seçin. 
+
+19. Açılan _Security_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş **Sertifikayı** da görebilirsiniz.
+
+20. Ekranda _sertifika_ tıklayın ve açılan sayfada **Policy** tıklayın.
+
+21. Açılan _Policy_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş otomatik olarak kuralları belırlenmiş **Policy** de görebilirsiniz.
+
+22. _Policy_ üzerinde tıklayın. **Policy Document** alanında detaylarını görebilirsiniz.
+
+23. IoT Core ana sayfasına geri dönebilirsiniz.
+
+Tebrikler!! Greengrass Group ve Greengrass Core başarı ile oluşturdunuz. 
 
 
+**Greengrass Uç Nokta Kurulumu (Cloud9)**
 
-
+Bu aşamada, greengrass'ın kurulumu için Cloud9 konfigürasyonu yaparak, bir önceki aşamada indirdiğimiz _tar.gz_ kullanarak da Cloud9 üzerine Greengrass kurulumunu yapacağız.
