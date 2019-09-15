@@ -137,7 +137,7 @@ https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab3/lab3-2.p
 
 ```
 
-5. Dosyanın içinde  * *shadowClient.configureEndpoint("ENDPOINT BURAYA KOPYALANACAK",8883)* * satırını bulup, tırnak işaretlerinin arasına kopyaladığınız **endpoint** adresini 'ENDPOINT BURAYA KOPYALANACAK' satırı yerine yapıştırın. 
+5. Dosyanın içinde  * *shadowClient.configureEndpoint("ENDPOINT BURAYA KOPYALANACAK",8883)* * satırını bulup, tırnak işaretlerinin arasına **endpoint** adresini 'ENDPOINT BURAYA KOPYALANACAK' satırı yerine yapıştırın. 
 
 6. Dosyayi kaydedin. Menüde File/Save tıklayın ya da (Ctrl+S) ya da (Cmd+S) 
 
