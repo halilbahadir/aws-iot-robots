@@ -55,29 +55,138 @@ Bu aşamada AWS IoT Core Web arayüzünü kullanarak, Greengrass için gerekli k
 
 13. _IoTRoboGGGroup_ ile ilişkilendirilmiş **IoTRoboGGGroup_Core** Greengrass Core görebilirsiniz.
 
-14. Greengrass ekranından çıkıp, IoT Core sayfasına dönmek için ekranın sol üstündeki gri kutudaki ok --> işaretini tıklayın.
+14. Menüden **Settings** tıklayın. 
 
-15. IoT Core sayfası menüsünden **Manage** tıklayın. 
+15. _Settings_ ekranının sonuna doğru **CloudWatch logs configuration** bölümünde **Edit** tıklayın.
 
-16. IoT Thing listesine yeni bir **IoTRoboGGGroup_Core** adında Thing eklediğini görüyoruz. Zira Greengrass Core, IoT Core için diğer Robo'lar gibi IoT Thing olarak çalışıyor. 
+16. **Add Another Log Type** tıklayın ve her iki **User Lambdas (recommended)** ve **Greengrass system** işaretleyip **Update** butonuna tıklayın.
 
-17. Sayfadaki **IoTRoboGGGroup_Core** tıklayın.
+17. Log konfigürasyonu kadetmek için **Save** butonuna tıklayın.
 
-18. Menüden **Security** seçin. 
+18. Greengrass ekranından çıkıp, IoT Core sayfasına dönmek için ekranın sol üstündeki gri kutudaki ok --> işaretini tıklayın.
 
-19. Açılan _Security_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş **Sertifikayı** da görebilirsiniz.
+19. IoT Core sayfası menüsünden **Manage** tıklayın. 
 
-20. Ekranda _sertifika_ tıklayın ve açılan sayfada **Policy** tıklayın.
+20. IoT Thing listesine yeni bir **IoTRoboGGGroup_Core** adında Thing eklediğini görüyoruz. Zira Greengrass Core, IoT Core için diğer Robo'lar gibi IoT Thing olarak çalışıyor. 
 
-21. Açılan _Policy_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş otomatik olarak kuralları belırlenmiş **Policy** de görebilirsiniz.
+21. Sayfadaki **IoTRoboGGGroup_Core** tıklayın.
 
-22. _Policy_ üzerinde tıklayın. **Policy Document** alanında detaylarını görebilirsiniz.
+22. Menüden **Security** seçin. 
 
-23. IoT Core ana sayfasına geri dönebilirsiniz.
+23. Açılan _Security_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş **Sertifikayı** da görebilirsiniz.
+
+24. Ekranda _sertifika_ tıklayın ve açılan sayfada **Policy** tıklayın.
+
+25. Açılan _Policy_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş otomatik olarak kuralları belırlenmiş **Policy** de görebilirsiniz.
+
+26. _Policy_ üzerinde tıklayın. **Policy Document** alanında detaylarını görebilirsiniz.
+
+27. IoT Core ana sayfasına geri dönebilirsiniz.
 
 Tebrikler!! Greengrass Group ve Greengrass Core başarı ile oluşturdunuz. 
 
 
-**Greengrass Uç Nokta Kurulumu (Cloud9)**
+**Greengrass Uç Nokta Ayarları (Cloud9)**
 
 Bu aşamada, greengrass'ın kurulumu için Cloud9 konfigürasyonu yaparak, bir önceki aşamada indirdiğimiz _tar.gz_ kullanarak da Cloud9 üzerine Greengrass kurulumunu yapacağız.
+
+1. Eğer, Cloud9 açık değilse, sol üst köşedeki 'Services' menüsünden Cloud9 seçip, Cloud9 Dashboard'u açın.
+
+2. Ekranda kullandığınız IDE (IoTRobotsIDE) ortamını açmak için, Open IDE tıklayın.
+
+3. **ggc_user** ve **ggc_group** kullanıcılarını Cloud9 sunucusuna tanımlayalım. Bu kullanıcıları Lambda fonksiyonları çalıştırmak için kullanacağız. Cloud9 terminal penceresinde aşağıdaki komutları çalıştırın.
+
+```
+sudo adduser --system ggc_user
+sudo groupadd --system ggc_group
+
+```
+
+4. Greengrass, üzerinde çalıştığı sunucunun işletim sistemi ayarlarında hardlink ve softlink korumasını aktif hale getirmeyi gerektirir ki, güvenlik seviyesinin arttırılması için önemli bir değişikliktir. Bunun için aşağıdaki komutları Cloud9 terminal ekranında çalıştırın.
+
+```
+echo 'fs.protected_hardlinks = 1' | sudo tee -a /etc/sysctl.d/00-defaults.conf
+echo 'fs.protected_symlinks = 1' | sudo tee -a /etc/sysctl.d/00-defaults.conf
+sudo sysctl --system
+
+```
+
+5. AWs Iot Greengrass için gerekli olan Linux Control group (cgroups) komutlarını Cloud9 terminal ekranında çalıştırın.
+
+```
+cd /tmp
+curl https://raw.githubusercontent.com/tianon/cgroupfs-mount/951c38ee8d802330454bdede20d85ec1c0f8d312/cgroupfs-mount > cgroupfs-mount.sh
+chmod +x cgroupfs-mount.sh 
+sudo bash ./cgroupfs-mount.sh
+```
+
+**Greengrass Yazılımının Kurulumu**
+
+1. Greengrass yazılımını indirin ve sıkıştırma dosyasını açın. Bunun için aşağıdaki komutları Cloud9 terminal ekranında çalıştırın.
+
+
+```
+cd /tmp
+wget https://d1onfpft10uf5o.cloudfront.net/greengrass-core/downloads/1.8.0/greengrass-linux-x86-64-1.8.0.tar.gz
+sudo tar -xzf greengrass-linux-x86-64-1.8.0.tar.gz -C /
+
+```
+
+2. Bir önceki bölümde makinenize indirdiğiniz _tar.gz_  uzantılı dosyayı, Cloud9 sunucusuna yüklememiz gerekiyor. Bunun için Cloud9 Environment penceresinde en üst seviye klasör olan **IoTRobotsIDE** seçiniz.
+
+3. Cloud9 Menüsünden **File** tıklayın, açılan listeden **Upload local files** seçin.
+
+4. Açılan pencereden **Select Files** tıklayın ve makinenizdeki adı **..setup.tar.gz** ile biten dosyayı seçin.
+
+5. Dosya yükleme penceresini kapatın. (X tıklayın)
+
+6. **..setup.tar.gz** dosyasının içinde _Certificate_ ve _Private Key_ dosyalarını taşıyan _greengrass/certs_ klasörü ile IoT Core'a bağlanmak için gerekli bilgilerin bulunduğu _config.json_ dosyası taşıyan _greengrass/config_ klasörü bulunmakta. Sıkıştırılmış dosyayı açmak için aşağıdaki komutları Cloud9 terminal ekranında çalıştırın.
+
+```
+cd /tmp
+mv ~/environment/*-setup.tar.gz setup.tar.gz
+sudo tar -xzf setup.tar.gz -C /greengrass
+
+```
+7. Ayrıca _Root Certificate Authority_ dosyasını da _greengrass/certs_ klasörüne kopyalayalım. Bu dosya hali hazırda kullandığımız, _environment_ penceresinden de görebileceğiniz **root-CA.crt** dosyası. Aşağıdaki komutları Cloud9 terminal ekranında çalıştırın. Dosyanın adını _root.ca.pem_ olarak değiştirmemizin sebebi _config.json_ da tanımlı değer ile aynı olması gerektiği için. Dosya adını değiştirmek, _config.json_ içindeki değerideğiştirmekten daha kolay :)
+
+```
+cd /home/ec2-user/environment/
+sudo cp root-CA.crt /greengrass/certs/root.ca.pem
+
+```
+
+Gerekli tüm konfigürasyonları tamamladık ve Greengrass kurulumunu Cloud9 üzerine yaptık. Şimdi Greengrass'ı çalıştırma zamanı.
+
+**Greengrass Çalıştırma**
+
+1. Aşağıdaki komutları Cloud9 terminal ekranında çalıştırın.
+
+
+```
+cd /greengrass/ggc/core/
+sudo ./greengrassd start
+```
+
+Komutu çalıştırdıktan sonra aşağıdakine benzer bir çıktı gördüyseniz, Greengrass başarı ile çalışmış demektir.
+ 
+```
+Setting up greengrass daemon
+Validating hardlink/softlink protection
+Waiting for up to 40s for Daemon to start
+
+Greengrass successfully started with PID: .....
+```
+
+Tebrikler, Greengrass'ı uç nokta sunucuda başarı ile çalıştırdınız..
+
+
+** Greengrass Lambda Fonksiyonu Hazırlama**
+
+
+
+
+
+
+
+
