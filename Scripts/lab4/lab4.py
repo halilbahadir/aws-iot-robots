@@ -13,7 +13,6 @@ if senderRobo == 'robo1':
 else:
     receiverRobo = 'robo1'
     
-print(receiverRobo)
 mqttClient = AWSIoTMQTTClient(senderRobo)
 
 #Ayarlar sayfasindaki IoTEndpoint buraya ekleyin
