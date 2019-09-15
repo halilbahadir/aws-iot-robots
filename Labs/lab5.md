@@ -207,7 +207,7 @@ Bu bölümde Greengrass Core'a gelen verilerin işlenmesinde kullanacağımız L
 
 11. _Function Code_ bölümünde _Code Entry Type_ alanında **Upload a .zip file** seçin. 
 
-12. **Upload** butonuna tıklayın. Bir önceki adımda indirdiğiniz **lab5*IoTRobotsGGLamda.zip** dosyasını seçip. _Open_ butonuna tıklayın.
+12. **Upload** butonuna tıklayın. Bir önceki adımda indirdiğiniz **lab5-IoTRobotsGGLambda.zip** dosyasını seçip. _Open_ butonuna tıklayın.
 
 13. _Upload_ butonu yanında yüklenecek dosyanın ismi görünecektir.
 
@@ -215,13 +215,78 @@ Bu bölümde Greengrass Core'a gelen verilerin işlenmesinde kullanacağımız L
 
 14. Ekranın sol üst köşesindeki turuncu renkli **Save** butonuna tıklayın.
 
-15. Kayıt sonrasında, kod editörü ekranında Lambda fonksiyonunu görebilirsiniz. Kodu incelediğinizde; fonksiyondaki lambda_handler methodu, Robo1 ve Robo2'den **iot/Robots**'e publish edilen mesajları, Lambda yine aynı Topic'e subscribe olarak okuyacak ve bu mesajları AWS bulut üzerindeki **iot/gg/robots** IoT Topic'e publish edecek şekilde geliştirildi. Kod üzerinde değişiklik yaparak gelen mesajları işleyebilirsiniz.
+15. Kayıt sonrasında, kod editörü ekranında Lambda fonksiyonunu görebilirsiniz. Kodu incelediğinizde; fonksiyondaki lambda_handler methodu, Robo1 ve Robo2'den **iot/robots**'e publish edilen mesajları, Lambda yine aynı Topic'e subscribe olarak okuyacak ve bu mesajları AWS bulut üzerindeki **iot/gg/robots** IoT Topic'e publish edecek şekilde geliştirildi. Kod üzerinde değişiklik yaparak gelen mesajları işleyebilirsiniz.
 
 16. Lambda arayüzünde **Actions** butonı tıklayın, açılan menüde **Publish New version** seçin.
 
 17. Açılan pencerede _version description_ alanına **1** yazın. ve **Publish** tıklayın.
 
 **Robotların ve Lambda'nın Aboneliklerini (Subscription) Tanımlama**
+
+Lab'ın bu adımında daha önce Lab1'de oluşturduğumuz Robo1 ve Robo2 IoT Thing'leri ile bir önceki adımda oluşturduğumuz Lambda fonksiyonu Greengrass Group (IoTRoboGGGroup) ekleyeceğiz ve sonrasında uç noktadaki sunucuya (Cloud9) deploy edeceğiz. 
+
+Ayrıca Robo1 ve Robo2'nin **iot/robots** gönderdikleri mesajların Lambda fonksiyona aktarılması, be Lambda fonksiyonuna gelen mesajlarında IoT Core üzerindeki **iot/gg/robots**  aktarılması için gerekli aboneliklerin (Subscription) tanımlanmasını yapacağız.
+
+1. AWS Web arayüzünde üst menüden _Servises_ altından **IoT Greengrass** tıklayın (sorgu alanından yararlanabilirsiniz) 
+
+2. AWS IoT Greengrass ana sayfasında, sağ üs köşeden AWS Region olarak "EU (Ireland)" seçildiğinden emin olun. IoT Greengrass sayfası IoT Core ile aynı arayüzde bulunur.
+
+3. Sol menüden **Groups** tıklayın 
+
+4. Açılan ekranda Greengrass grupları listelenecektir **IoTRoboGGGroup** tıklayın. 
+
+5. Açılan Greengrass Group ekranında menüden **Devices** seçin. 
+
+6. **Add Device** butonuna tıklayın.
+
+7. **Select an IoT Thing** tıklayın.
+
+8. Açılan Listeden **Robo1** seçin ve **Finish tıklayın.
+
+9. Aynı şekilde **Robo2** içinde 5.adımdan başlayarak **Robo2** IoT Thing greengrass grubuna ekleyin.
+
+10. _Devices_ ekranında Robo1 ve Robo2'nin eklendiğini görebilirsiniz.
+
+11. Greengrass Group ekranında menüden **Lambdas** tıklayın.
+
+12. **Add Lambda** butonuna tıklayın.
+
+13. **Use existing Lambda** tıklayın.
+
+14. Açılan ekranda **IoTRobotsGGLambda** seçin ve **Next** tıklayın.
+
+15. Lambda fonksiyonu versiyonu olarak **Version 1** seçin ve **Finish** tıklayın.
+
+16. _Lambdas_ ekranında eklediniz **IoTRobotsGGLambda** fonksiyonunu görebilirsiniz.
+
+17. Açılan Greengrass Group ekranında menüden **Subscriptions** seçin.
+
+18. **Add Subscription** butonuna tıklayın.
+
+19. **Select a Source** alanında **Select** tıklayın.
+
+20. **Devices** tıklayın ve listeden **Robo1** seçin.
+
+21. **Select a Target** alanında **Select** tıklayın.
+
+22. **Lambdas** tıklayın ve listeden **IoTRobotsGGLambda** seçin.
+
+23. **Next** tıklayın.
+
+24. **Topic filter** alanına **iot/robots** yazın.
+
+25. **Next** tıklayın.
+
+26. **Finish** tıklayın.
+
+27. Aynı şekilde **Robo2** --> **IoTRobotsGGLambda** olacak şekilde **iot/robots** topic tanımlayın (18.adımdan 26. adıma kadar tekrarlayın)
+
+28.  Aynı şekilde  **IoTRobotsGGLambda** (Source)--> **IoT Cloud** (Target) olacak şekilde **iot/gg/robots** topic tanımlayın (18.adımdan 26. adıma kadar tekrarlayın)
+
+29. Bütün hepsini ekledikten sonra _Subscriptions_ ekranında 3 tane tanım göreceksiniz.  
+
+
+Tebrikler!! Greengrass Grup ve Subscription tanımlarını başarı ile bitirdiniz..
 
 
 
