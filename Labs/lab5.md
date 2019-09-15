@@ -181,7 +181,50 @@ Greengrass successfully started with PID: .....
 Tebrikler, Greengrass'ı uç nokta sunucuda başarı ile çalıştırdınız..
 
 
-** Greengrass Lambda Fonksiyonu Hazırlama**
+**Greengrass Lambda Fonksiyonu Hazırlama**
+
+Bu bölümde Greengrass Core'a gelen verilerin işlenmesinde kullanacağımız Lambda fonksiyonu geliştirip, bunu Greengrass'ın bulunduğu uç nokta sunucuya (Cloud9) yükleyeceğiz.
+
+1. Cloud9 arayüzünde sol üst köşedeki AWS Cloud9 tıklayın. Açılan menüde Go to your dashboard seçin. Yeni browser sekmesinde Cloud9 web arayüzü açılacaktır.
+
+2. Üst menüden Services tıklayın. Açılan menüden Compute grubundan **Lambda** seçin.
+
+3. AWS Lambda web arayüzü açılacaktır. Ekranda **Create a function** butonuna tıklayın.
+
+4. **Author from scratch** ile sıfırdan bir fonksiyon geliştirebilirsiniz. Lambda fonksiyonları için hazır oluşturulmuş şablonları kullanabilirsiniz (Use a blueprint) ya da kendi uygulama kütüphanesinden mevcut fonksiyonları kullanabilirsiniz (Browse Serverless App Repository)
+
+5. _Function Name_ alanına **IoTRobotsGGLambda** yazın.
+
+6. _Runtime_ için **Python 2.7** seçin. Bunun dışında bir çok farklı dil destekliyor ayrıca siz kendi Runtime ortamınızı getirebiliyorsunuz.
+
+7. _Permissions_ alanı altında **choose or create an execution role** tıklayıp, diğer giriş alanlarına ulaşın.
+
+8. **Create a new role with basic Lambda permissions** seçin. Burada oluşturulan rol aslında greengrass senaryomuz için kullanılmayacak, çünkü biz Lambda fonksiyonunu bulutta değil, uç noktada bulunan Greengrass Core üzerinde çalıştıracağız. 
+
+9. **Create Function** butonuna tıklayın ve Lamba fonksiyonu ve IAM Rolünün oluşturulmasını bekleyin.
+
+10. Geliştirilen Lambda fonksiyonu için Greengrass Python kütüphanesine de ihtiyaç olacak ki, oraaki fonksiyonları da kullanabilelim. Bunun için hazırladığım kodu indirebilirsiniz (https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab5/lab5-IoTRobotsGGLambda.zip)
+
+11. _Function Code_ bölümünde _Code Entry Type_ alanında **Upload a .zip file** seçin. 
+
+12. **Upload** butonuna tıklayın. Bir önceki adımda indirdiğiniz **lab5*IoTRobotsGGLamda.zip** dosyasını seçip. _Open_ butonuna tıklayın.
+
+13. _Upload_ butonu yanında yüklenecek dosyanın ismi görünecektir.
+
+14. _Handler_ alanındaki yazıyı silip **IoTRobotsGGLambda.lambda_handler** yazın.
+
+14. Ekranın sol üst köşesindeki turuncu renkli **Save** butonuna tıklayın.
+
+15. Kayıt sonrasında, kod editörü ekranında Lambda fonksiyonunu görebilirsiniz. Kodu incelediğinizde; fonksiyondaki lambda_handler methodu, Robo1 ve Robo2'den **iot/Robots**'e publish edilen mesajları, Lambda yine aynı Topic'e subscribe olarak okuyacak ve bu mesajları AWS bulut üzerindeki **iot/gg/robots** IoT Topic'e publish edecek şekilde geliştirildi. Kod üzerinde değişiklik yaparak gelen mesajları işleyebilirsiniz.
+
+16. Lambda arayüzünde **Actions** butonı tıklayın, açılan menüde **Publish New version** seçin.
+
+17. Açılan pencerede _version description_ alanına **1** yazın. ve **Publish** tıklayın.
+
+**Robotların ve Lambda'nın Aboneliklerini (Subscription) Tanımlama**
+
+
+
 
 
 
