@@ -289,6 +289,29 @@ Ayrıca Robo1 ve Robo2'nin **iot/robots** gönderdikleri mesajların Lambda fonk
 Tebrikler!! Greengrass Grup ve Subscription tanımlarını başarı ile bitirdiniz..
 
 
+**Konfigürasyon ve Lambda Fonksiyonu Greengrass Core'a Yükleme**
+
+Bır önceki bölümde yaptığımız konfigürasyon tanımlarını AWS bulut üzerinde IoT Greengrass servisi üzerinde yaptık, Lambda fonksiyonunu da yine AWS bulut üzerinde Lambda servisi üzerine yükledik (geliştirdik). Şimdi bu konfigürasyon ve Lambda fonksiyonlarını uç noktadaki Greengrass Core'a yükleyeceğiz.
+
+1. Greengrass Group ekranında sol üst köşede **Actions** tıklayın, açılan menüde **Deploy** tıklayın.
+
+2. İlk _deployment_ olduğu için yetki tanımlamamız gerekiyor. Tüm Greengrass grupları için sadece bir kere yapılacak bir işlem. Açılan ekranda **Grant permissions** butonuna tıklayın.
+
+3. Greengrass grubuna eklediğimiz _device'ların_ (Robo1, Robo2) Greengrass Core'u otomatik olarak bulup erişebilmeleri için **Automatic Detection** butonuna tıklayın. Bu Greengrass Discovery Service kullanarak sağlanacak. Bunun için sonraki adımlarda device için yazdığımız kodlarda ufak bir ekleme yapacağız.
+
+4. Greengrass Deployment başlattığına dair bir pop-up mesajı görünecektir.
+
+5. Deployment başarı ile tamamlandığında GreenGrass Group adının (IoTRoboGGGroup) altında yeşil bir ikon yanında **Successfully completed** yazıldığını görebilirsiniz. 
+
+6. Sol menüde **Deployments** tıklayın. _Deployment History Review_ listesinde başarılı / başarısız olmuş deploymentları görebilirsiniz.
+
+7. Deployment'da hata almanız durumunda listenin en solunde yer alan üç nokta tıklayıp, **re-deploy** ile tekrar yükleme başlatabilirsiniz. 2. adımda _grant access_ dedikten sonra AWS IAM servisinde oluşturulan yeni rolün tanımlanması bitmeden yükleme başlattığınızda hata alabilirsiniz. Bu lab sırasında sıkça karşılaştığımız bir hata, bu durumda 30 sn kadar bekleyip sonra tekrar yükleme (re-deploy) yapın.
+
+
+
+
+1. 
+
 
 
 
