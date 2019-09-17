@@ -61,29 +61,57 @@ Bu aşamada AWS IoT Core Web arayüzünü kullanarak, Greengrass için gerekli k
 
 16. **Add Another Log Type** tıklayın ve her iki **User Lambdas (recommended)** ve **Greengrass system** işaretleyip **Update** butonuna tıklayın.
 
-17. Log konfigürasyonu kadetmek için **Save** butonuna tıklayın.
+17. Log konfigürasyonu kaydetmek için **Save** butonuna tıklayın.
 
-18. Greengrass ekranından çıkıp, IoT Core sayfasına dönmek için ekranın sol üstündeki gri kutudaki ok --> işaretini tıklayın.
+18. _Settings_ ekranının sonuna doğru **Local logs configuration** bölümünde **Edit** tıklayın.
 
-19. IoT Core sayfası menüsünden **Manage** tıklayın. 
+19. **Add Another Log Type** tıklayın ve her iki **User Lambdas (recommended)** ve **Greengrass system** işaretleyip **Update** butonuna tıklayın.
 
-20. IoT Thing listesine yeni bir **IoTRoboGGGroup_Core** adında Thing eklediğini görüyoruz. Zira Greengrass Core, IoT Core için diğer Robo'lar gibi IoT Thing olarak çalışıyor. 
+20. Log konfigürasyonu kaydetmek için **Save** butonuna tıklayın.
 
-21. Sayfadaki **IoTRoboGGGroup_Core** tıklayın.
+21. _Settings_ ekranının en üstünde yer alan **Group Role** bölümünde **Add Role** tıklayın.
 
-22. Menüden **Security** seçin. 
+22. Açılan ekranda **Greengrass_ServiceRole** rolünü seçin. **Save** tıklayın. 
 
-23. Açılan _Security_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş **Sertifikayı** da görebilirsiniz.
 
-24. Ekranda _sertifika_ tıklayın ve açılan sayfada **Policy** tıklayın.
+23. Greengrass ekranından çıkıp, IoT Core sayfasına dönmek için ekranın sol üstündeki gri kutudaki ok --> işaretini tıklayın.
 
-25. Açılan _Policy_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş otomatik olarak kuralları belırlenmiş **Policy** de görebilirsiniz.
+24. IoT Core sayfası menüsünden **Manage** tıklayın. 
 
-26. _Policy_ üzerinde tıklayın. **Policy Document** alanında detaylarını görebilirsiniz.
+25. IoT Thing listesine yeni bir **IoTRoboGGGroup_Core** adında Thing eklediğini görüyoruz. Zira Greengrass Core, IoT Core için diğer Robo'lar gibi IoT Thing olarak çalışıyor. 
 
-27. IoT Core ana sayfasına geri dönebilirsiniz.
+26. Sayfadaki **IoTRoboGGGroup_Core** tıklayın.
+
+27. Menüden **Security** seçin. 
+
+28. Açılan _Security_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş **Sertifikayı** da görebilirsiniz.
+
+29. Ekranda _sertifika_ tıklayın ve açılan sayfada **Policy** tıklayın.
+
+30. Açılan _Policy_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş otomatik olarak kuralları belırlenmiş **Policy** de görebilirsiniz.
+
+31. _Policy_ üzerinde tıklayın. **Policy Document** alanında detaylarını görebilirsiniz.
+
+32. IoT Core ana sayfasına geri dönebilirsiniz.
 
 Tebrikler!! Greengrass Group ve Greengrass Core başarı ile oluşturdunuz. 
+
+
+
+**Greengrass_ServiceRole IAM Rolüne yetki verme**
+
+1. AWS Web arayüzünde üst menüden _Servises_ altından **IAM** tıklayın (sorgu alanından yararlanabilirsiniz) 
+
+2. Sol menüden **Roles** tıklayın.
+
+3. _Roles_ listesinden **Greengrass_ServiceRole** bulup, tıklayın. (_Search_ alanına 'Greengrass_ServiceRole' yazarak filtereleyebilirsiniz)
+
+4. _Greengrass_ServiceRole_ detay sayfasında _permissions_ tabında **Attach Policies** tıklayın.
+
+5. _Filtre_ alanında **CloudWatchLogsFullAccess** yazınız. Filtrelenmis policy listesinden **CloudWatchLogsFullAccess** işaretleyip, **Attach Policy** tıklayın.
+
+6. _Greengrass_ServiceRole_ ait policy listesine eklendiğini görebilirsiniz.
+
 
 
 **Greengrass Uç Nokta Ayarları (Cloud9)**
