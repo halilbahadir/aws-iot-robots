@@ -21,7 +21,7 @@ mqttClient.configureCredentials("../root-CA.crt","PrivateKey.pem","certificate.p
 
 mqttClient.connect()
 
-# Publish ve Subscription Topic'lerinin tanımlanması, ornegin iot/mesaj/robo1 topic'lerden birisi olacak
+# Publish ve Subscription Topiclerinin tanimlanmasi, ornegin iot/mesaj/robo1 topiclerden birisi olacak
 subscriptionTopic = 'iot/mesaj/' + senderRobo
 publishTopic = 'iot/mesaj/' + receiverRobo
 
