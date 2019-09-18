@@ -104,4 +104,4 @@ Mesaj Alindi iot/mesaj/robo2: Sana da merhaba
 Tebrikler..!! Robotlar arasında mesaj gönderimini başarı ile tamamladınız.
 
 
-Şimdi [LAB5] (https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab5.md) geçebiliriz.
+Şimdi [LAB5](https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab5.md) geçebiliriz.
