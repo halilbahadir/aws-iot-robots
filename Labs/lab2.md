@@ -307,4 +307,4 @@ Lab çalışmasını bitirdikten sonra oluşturduğumuz AWS kaynaklarını silme
 Tekrar **START** durumuna geçmek için, yine **Actions** butonu ile **Instance State / Start** tıklayabilirsiniz.
 
 
-Şimdi Lab3 için hazırız..
+Şimdi [Lab3](https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab3.md) için hazırız..
