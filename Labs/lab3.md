@@ -2,7 +2,7 @@
 
 
 Bu Lab çalışmasında IoT Shadow kullanarak Robo1 (ya da Robo2) ile statü değerlerinde (özelliklerinde) uygulama ile değişiklik 
-yapacağız. Senaryomuzda depo içinde görüntü olarak birbirinin aynısı yüzlerce Robo çalışıyor olacağı için, operatorler herhangi bir robota ulaşmak için onun lokasyonunu kullanacaklardır, ayrıca gerektiğinde hızla robutu bulmak için roboların üzerinde bulunan mavi ışığı yakmayı sağlayabiliriz, bunu bir mobil uygulama kullanarak yapabiliriz ama bu lab'da kolaylık olması açısından AWS IoT Core içindeki IoT MQTT Client kullanacağız. 
+yapacağız. Senaryomuzda depo içinde görüntü olarak birbirinin aynısı yüzlerce Robo çalışıyor olacağı için, operatorler herhangi bir robota ulaşmak için onun lokasyonunu kullanacaklardır, fakat gerektiğinde hızla robutu bulmak için roboların üzerinde bulunan mavi ışığı yakmayı sağlayabiliriz, bunu bir mobil uygulama kullanarak yapabiliriz ama bu lab'da kolaylık olması açısından AWS IoT Core içindeki IoT MQTT Client kullanacağız. 
 Işığı yakıp söndürmek için her bir robot üzerinde REST API talebi dinleyen minik bir web sunucu çalıştırıp sağlayabiliriz, fakat bu pil ömrü ve verimliliği için hiç uygun olmayacaktır. Bunun yerine AWS IoT servisini, aracı olarak kullanıp ışığı açıp kapatmayı sağlayabiliriz.  
 
 Ya da daha önceki lab'da olduğu gibi IoT Topic kullanabiliriz, fakat bu durumda da mesajlar kısa ömürlü oldukları için, Robotlar sürekli bağlı olmak zorundalar. Eğer herhangi bir bağlantı kopması durumunda, o sırada eğer ışığı açıp-kapama mesajı gelirse Robotlar bunu hiç bilemeyebilir. IoT Thing'lerin sürekli bağlantıda olması çoğu zaman efektif bir çözüm olmayabilir, özellikle yeterli enerji yoksa ya da enerji tüketimini azaltma ihtiyacı varsa. 
@@ -44,7 +44,7 @@ https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab3/lab3-1.p
 10. Bu Cloud9 sekmesi açık kalsın, şimdi başka bir browser sekmesinde IoT Core üzerinden IoT Thing Shadow izleyelim.
 
 
- **Thin Shadow Client (AWS Web Arayüz)**
+ **Thing Shadow Client (AWS Web Arayüz)**
  
  1. Eğer Cloud9 Dashboardunda iseniz, ekranın üstündeki Cloud9 menüsünün sol üst köşedeki **AWS Cloud9** tıklayıp açılan menüde 'Go to Your Dashboard' seçin. Yeni bir browser sekmesinde AWS Cloud9 Dashboard'u açılacaktır. 
 
@@ -69,6 +69,7 @@ cd robo1
 python lab3-1.py
 
 ```
+Hata almanız durumunda **python2** ile çalıştırın. 
 
 2. Aşağıdaki mesajları terminale yazdıracaktır.
 
@@ -90,9 +91,6 @@ Shadow state:
 
 {
   "desired": {
-    "headLight": "On"
-  },
-  "delta": {
     "headLight": "On"
   }
 }
@@ -149,6 +147,8 @@ cd robo1
 python lab3-2.py
 
 ```
+Hata almanız durumunda **python2** ile çalıştırın. 
+
 8. Aşağıdaki mesajları terminale yazdıracaktır.
 
 ```
@@ -170,7 +170,7 @@ Listening for Delta Messages
 
 14. _Shadow State_ alanı editör haline aldığı için, doküman üzerinde değişiklik yapabiliriz. 
 
-15. Desired State alanını ON durumundan OFF durumuna getirmek için aşağıdaki değişikliği yapın ya da tümğnğ kopyalayıp, mevcutu silerek kopyalayın.
+15. Desired State alanını ON durumundan OFF durumuna getirmek için aşağıdaki değişikliği yapın ya da tümünü kopyalayıp, mevcutu silerek kopyalayın.
 
 ```
 {
@@ -200,3 +200,5 @@ Listening for Delta Messages
 
 Tebrikler IoT Thing Shadow adımını da tamamladınız.
 
+
+Şimdi [Lab4](https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab4.md) geçebiliriz.
