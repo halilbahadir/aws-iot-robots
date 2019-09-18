@@ -1,7 +1,7 @@
 ## Lab 2: AWS IoT Rules 
 
   
-  Bu lab çalışmasında, robotlardan herhangi birinin pil seviyesinin %10'un altına düştüğü durumda operatörlere eposta gönderilmesini tetikleyen bir kural tanımlayacağız. Bunun için öncelikle bir SNS (Simple Notification Service) Topic oluşturup ve SNS Topic'e bır eposta adresi ile abone (subscribe) olacağız. Öncelikle IoT Servisinin, SNS Topic'e mesaj yayınlaması (publish) için yetki vermemiz gerekiyor. Sonrasında da SNS Topic'e gelen mesajlar üzerinde SQL Sorgusu kullanarak pil seviyesini kontrol eden bir IoT Rule tanımlayacağız.  
+  Bu lab çalışmasında, robotlardan herhangi birinin pil seviyesinin %10'un altına düştüğü durumda operatörlere eposta gönderilmesini tetikleyen bir kural tanımlayacağız. Bunun için öncelikle bir SNS (Simple Notification Service) Topic oluşturup ve SNS Topic'e bir eposta adresi ile abone (subscribe) olacağız. Öncelikle IoT Servisinin, SNS Topic'e mesaj yayınlaması (publish) için yetki vermemiz gerekiyor. Sonrasında da SNS Topic'e gelen mesajlar üzerinde SQL Sorgusu kullanarak pil seviyesini kontrol eden bir IoT Rule tanımlayacağız.  
  
  Amazon Simple Notification Service (SNS) servisi, dağıtık sistemleri ve serverless uygulamaları birbirinden ayırmanıza imkan tanıyan yüksek oranda erişilebilir, sağlam, güvenli ve tam olarak yönetilen bir pub/sub mesajlaşma hizmetidir. SNS ayrıca, son kullanıcılara mobil anlık bildirimler, SMS ve e-posta yollarıyla bildirim dağıtılması için kullanılabilir. 
   
@@ -16,26 +16,24 @@
 
 Bu bölümde SNS Topic tanımlayıp, bır eposta adresi kullanarak o SNS Topic'e abone olup, abonelik için eposta adresine gelen epostadaki linki kullanıp onay vereceğiz.
 
-Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
-
 
 1. AWS Web Arayüzünden giriş yapın ve AWS Region olarak IRELAND (eu-west-1) seçili olduğundan emin olun.
 
-2. Sol üst köşedeki 'Services'menüsünden SNS seçip, SNS Dashboard'u açın.
+2. Sol üst köşedeki 'Services' menüsünden SNS seçip, SNS Dashboard'u açın.
 
 3. Açılan ekranın sol üst tarafındaki hamburger menüden (3 tane çizgi üst üste) Topics tıklayın.
 
-4. _Create Topic_ butonuna tıklayın.
+4. **Create Topic** butonuna tıklayın.
 
-5. 'Topic Name' alanına *IoTBatteryTopic* yazın.
+5. 'Topic Name' alanına **IoTBatteryTopic** yazın.
 
-6. _Create Topic_ butonuna tıklayın. SNS Topic oluşturuldu.
+6. **Create Topic** butonuna tıklayın. SNS Topic oluşturuldu.
 
-7. Bir eposta adresi ile yeni oluşturulan **IoTBatteryTopic** SNS Topic'e abone olmak için _Create Subscription_ butonuna tıklayın
+7. Bir eposta adresi ile yeni oluşturulan **IoTBatteryTopic** SNS Topic'e abone olmak için **Create Subscription** butonuna tıklayın
 
-8. 'Protocol' alanında **Email** seçin.
+8. _Protocol_ alanında **Email** seçin.
 
-9. 'Endpoint' alanına mesajlarını görmeye yetkiniz olan bir eposta adresi giriniz.
+9. _Endpoint_ alanına mesajlarını görmeye yetkiniz olan bir eposta adresi giriniz.
 
 10. **Create Subscription** butonuna tıklayın. Eposta adresi ile **IoTBatteryTopic** SNS Topic'e abone oldunuz.
 
@@ -50,9 +48,7 @@ SNS Topic oluşturup, eposta adresinizle SNS Topic aboneliğini başarı ile tam
 
 Bir önceki bölümde tanımladığımız SNS Topic'e  AWS IoT servislerinden mesaj yayınlamak (publish) için yetki tanımlamamız gerekiyor. AWS üzerinde bir servisin, bir diğer servisi kullanabilmesi için yetkiye ihtiyacı olacaktır. Bu aynı bizim Lab'larda kullandığımız **IoTRoboUser** kullancısının (IAM User) servisleri kullanabilmek için yetkiye (policy) ihtiyaç duyması gibidir. Bir AWS Servisinin diğer bir servisi kullanabilmesini sağlamak için **IAM Role** özelliğini kullanacağız. Bu aşamada yeni bir AWS IAM Rolü tanımlayacağız, bu IAM Rol _iot.amazonaws.com_ servis öğesi ile 'Trust Relationship' kurmalı ve aynı zamanda SNS Topic'e mesaj yayınlama (publish) yetkisine (IAM Policy) sahip olmalıdır.
 
-Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
-**VIDEO**
 
 1. AWS Web Arayüzünden giriş yapın ve AWS Region olarak IRELAND (eu-west-1) seçili olduğundan emin olun.
 
@@ -96,7 +92,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 3. IoT Core Rule tanımlamak için sol menüden **Act** tıklayın.
 
-4. **Create Rule** butonuna tıklayın.
+4. **Create a Rule** butonuna tıklayın.
 
 5. _Name_ alanına **BatteryRule** yazın.
 
@@ -135,6 +131,8 @@ Bu sorguda **iot/robots** IoT Topic'deki (ki Lab 1 de oluşturmuştuk) **battery
 
 17. **Create Rule** butonuna tıklayın. 
 
+18. _IoT Rule_ aktif olduğunu görmek için sayfayı güncellemeniz gerekebilir (refresh).
+
 Tebrikler.. IoT Rule başarı ile tanımlandı..
 
 ### Amazon S3 (Amazon Simple Storage Service)
@@ -147,8 +145,6 @@ Bu lab çalışmasında aşağıdaki mimari ve akışı gerçekleştireceğiz.
 
 ![alt text](https://github.com/halilbahadir/aws-iot-robots/blob/master/images/iot-lab2-s3.jpg)
 
-
-Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
 
 1. AWS Web Arayüzünden giriş yapın ve AWS Region olarak IRELAND (eu-west-1) seçili olduğundan emin olun.
@@ -171,7 +167,6 @@ Tebrikler!! S3 Bucket başarı ile oluşturdunuz.
 
 Bu bölümde, Roboların tüm gönderdiği mesajları (SQL sorgusu ile) alan IoT Rule tanımlayacağız ve bu mesajları S3'e kaydedeceğiz. Sonrasında bu verileri analiz için kullanabiliriz.
 
-Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
 
 1. AWS Web Arayüzünden giriş yapın ve AWS Region olarak IRELAND (eu-west-1) seçili olduğundan emin olun.
@@ -192,7 +187,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 9. _S3 Bucket_ listesinden bir önceki bölümde oluşturduğunuz S3 bucket seçiniz. Benim senaryoda **hb-iot-robo-messages** seçiyorum. 
 
-10. _Key_ alanına  **${topic()}/${timestamp()}** girin. Bu alana değişken bir değer vermemiz gerekiyor ki her mesaj farklı dosya olarak kaydedilsin, yoksa statik isim verirsek aynı dosyanın üzere yazar ve eski mesajları kaybedersiniz. Bu sebeple ?_Topic_ alanına IoT Topic ismi geliyor olacak ki S3'e klasör olarak eklenecek. _timestamp_ ise mesajın tarihi, bu da tekilliği sağlayacak.
+10. _Key_ alanına  **${topic()}/${timestamp()}** girin. Bu alana değişken bir değer vermemiz gerekiyor ki her mesaj farklı dosya olarak kaydedilsin, yoksa statik isim verirsek aynı dosyanın üzere yazar ve eski mesajları kaybedersiniz. Bu sebeple _Topic_ alanına IoT Topic ismi geliyor olacak ki S3'e klasör olarak eklenecek. _timestamp_ ise mesajın tarihi, bu da tekilliği sağlayacak.
  
 11. _Choose or create a role to grant AWS IoT access to perform this action_ alanında **Select** tıklayın
 
@@ -232,6 +227,8 @@ cd robo1
 python lab1.py
 
 ```
+Hata almanız durumunda **python2** ile çalıştırmayı deneyin.
+
 4. Aşağıdaki gibi bir çıktı göreceksiniz.
 
 ```
@@ -247,6 +244,8 @@ cd robo2
 python lab1.py
 
 ```
+Hata almanız durumunda **python2** ile çalıştırmayı deneyin.
+
 6. Aşağıdaki gibi bir çıktı göreceksiniz.
 
 ```
@@ -277,6 +276,12 @@ Eğer random üretilen pil değeri %10 altında ise IoT Rule tanımı ile SNS ü
  ```
  
  **AllMsq** SQL Sorgusuna verdiğimiz isim. Diğer alanlar ise Robo1 adındaki robotun o andaki durumu ile ilgili bilgiler. 
+ 
+ 13. Eğer IoT Rule üzerinden Email almak istemiyorsanız. AWS IoT web arayüzünde **Act** tıklayın.
+ 
+ 14. IoT Rule listesinde 2 kuralı da göreceksiniz.
+ 
+ 15. **BatteryRule** kartının köşesindeki üç noktaya (...) tıklayın ve listeden **Disable** seçin. Bu durumda kural aktif olmaktan çıkacaktır.
  
  
  **Şimdi Temizlik Zamanı**
