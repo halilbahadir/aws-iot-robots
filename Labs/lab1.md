@@ -1,9 +1,9 @@
 ## Lab 1: Robotların IoT Core'a Bağlanması
 
-  Bu lab çalışmasında 2 tane robot (Thing) oluşturup, bu robotları AWS IoT Core servisi ile bağlantısını kuracağız. Böylelikle Robot'lar IoT Core'daki IoT Topic'lerine data gönderebilecekler. Bu bağlantıyı güvenli bir şekilde sağlayabilmek için Robot (Thing), politika (policy) ve sertifika (certification) oluşturmamız gerekecek. Sertifika kimlik doğrulama için kullanılırken, politika ise kimlik doğrulaması alan robotun ne yapmaya yetkilendirildiğini tarifleyecek.
+  Bu lab çalışmasında 2 tane robot (Thing) oluşturup, bu robotları AWS IoT Core servisi ile bağlantısını kuracağız. Böylelikle Robot'lar IoT Core'daki IoT Topic'lerine veri gönderebilecekler. Bu bağlantıyı güvenli bir şekilde sağlayabilmek için Robot (Thing), politika (policy) ve sertifika (certification) oluşturmamız gerekecek. Sertifika kimlik doğrulama için kullanılırken, politika ise kimlik doğrulaması alan robotun ne yapmaya yetkilendirildiğini tarifleyecek.
   Birinci robotu AWS web konsoldan, ikincisini ise komut satırından oluşturacağız.
   
-  Tabi elimizde gerçek robotlar olmadığı için :smile: simülasyonu Amazon Cloud9 kullanarak gerçekleştireceğiz. Fakat sonraki lab'larda Rasberry Pi bizim robotlarımız olacak. 
+  Tabi elimizde gerçek robotlar olmadığı için :smile: simülasyonu [Amazon Cloud9](https://aws.amazon.com/cloud9/) kullanarak gerçekleştireceğiz. Fakat sonraki lab'larda Rasberry Pi bizim robotlarımız olacak (yakında..). 
  
  Aşağıda bu lab'da oluşturup, kullanacağımız AWS kaynaklarını ve veri akışını görebilirsiniz.
  
@@ -15,7 +15,7 @@
 AWS Hesabı açtıktan sonra hesabınıza tüm yetkilere sahip, 'Root User' ile giriş yaptınız. Fakat 'root user' projelerde kullanılması tavsiye edilmez, onun yerine AWS IAM (Identity Access Management) servisini kullanarak, projeleriniz için hesabınıza farklı yetkilere sahip yeni kullanıcılar tanımlanabilir. Kullanıcılara da yetki politikaları (IAM Policy) tanımlanabilir. 
 
 **Policy Tanımlama**
-Öncelikle yeni oluşturacağımız kullanıcıya vereceğimiz yetkileri tanımlayalım. Diğer lab'lara geçtikçe aşağıda oluşturduğumuz policy'yi güncelleyerek yeni yetkiler de ekleyeceğiz. 
+Öncelikle yeni oluşturacağımız kullanıcıya vereceğimiz yetkileri tanımlayalım. Diğer lab'lara geçtikçe aşağıda oluşturduğumuz policy'yi güncelleyerek yeni yetkiler de ekleyebiliriz. 
 
 Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
@@ -25,18 +25,11 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 2. IAM servisi ana sayfasındaki sol tarafta bulunan menüden "Policies" tıklayın.
 
-3. "Create Policy" butonuna tıklayın.
+3. **Create Policy** butonuna tıklayın.
 
 4. JSON sekmesine tıklayarak geçin.
 
 5. Editör kutusundaki yazıları silip, aşağıdaki policy'i kopyalayıp kutuya yapıştırın. 
-
-6. "Review Policy" tıklayın.
-
-7. Name alanına **iotRobotsPolicy** yazıp
-
-8. "Create Policy" tıklayın.
-
 
 ```json
 {
@@ -66,6 +59,14 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 ```
 
+6. **Review Policy** tıklayın.
+
+7. _Name_ alanına **iotRobotsPolicy** yazıp
+
+8. **Create Policy** tıklayın.
+
+
+
 Tebrikler..!! Policy'yi başarı ile tanımladınız.
 
 
@@ -79,27 +80,27 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 2. IAM servisi ana sayfasındaki sol tarafta bulunan menüden "Users" tıklayın.
 
-3. "Add User" butonuna tıklayın.
+3. **Add User** butonuna tıklayın.
 
-4. User Name alanına **IoTRoboUser** yazın.
+4. _User Name_ alanına **IoTRoboUser** yazın.
 
 5. Access Type alanından ise sadece **AWS Management Console access** seçin.
 
-6. "Next: Permissions" butonuna tıklayın.
+6. **Next: Permissions** butonuna tıklayın.
 
-7. Yeni sayfadan "Attach Existing Policies Directly" yazan kutuya tıklayın.
+7. Yeni sayfadan **Attach Existing Policies Directly** yazan kutuya tıklayın.
 
 8. "Filter Policies" alanına **iotRobotsPolicy** yazıp, filtrelenen liste alanından daha önce oluşturduğumuz policy'yi seçin.
 
-9. "Next: Tags" butonuna tıklayın.
+9. **Next: Tags** butonuna tıklayın.
 
-10."Next: Review" butonuna tıklayın.
+10. **Next: Review** butonuna tıklayın.
 
-11. Tüm yaptığınız girişlerin doğruluğundan emin olduktan sonra "Create User" butonuna tıklayın.
+11. Tüm yaptığınız girişlerin doğruluğundan emin olduktan sonra **Create User** butonuna tıklayın.
 
-12. Tablodaki password alanındakı 'Show' linkine tıklayın ve görüntülenen şifrenizi bir yere kaydedin. Ya da "Download .csv" butonu tıklayrak, tablodaki bilgileri indirebilirsiniz.
+12. Tablodaki password alanındakı **Show** linkine tıklayın ve görüntülenen şifrenizi bir yere kaydedin. Ya da **Download .csv** butonu tıklayrak, tablodaki bilgileri indirebilirsiniz.
 
-13. "Close" butonu tıklayın. 
+13. **Close** butonu tıklayın. 
 
 
 Tebrikler..!! Yeni Kullanıcıyı başarı ile oluşturdunuz.
@@ -111,7 +112,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 [![AWS IoT Robots](http://img.youtube.com/vi/7_JVVkLa2RU/0.jpg)](http://www.youtube.com/watch?v=7_JVVkLa2RU "AWS IoT Robots Workshop")
 
-IAM Ana sayfasındaki sol taraftaki menüden "Dashboard" tıklayın, ve sayfanın en üstünde bulunan 'IAM users sign-in link:' de https://.. ile başlayan linki kopyalayıp browser'da yeni sekmede sayfayı açın.  Yeni kullanıcı adınız ve şifrenizi kullanarak sisteme giriş yapın. İlk defa yeni kullanıcı ile giriş yaptığınız için şifre değişikliği sayfası açılacaktır. O sayfadan yeni şifrenizi tanımlamanız gerekecektir. Bu örnek için şifre kuralları eklemedim fakat, yeni oluşturacağınız şifrenin kaç karakterden oluşması gerektiği, hangi tip karakterden kaçar tane kullanmanız gerektiği, şifrenin geçerlilik periyodu gibi değerleri şifreleme kuralı olarak tanımlayıp, o kurala uygun şifre oluşturmak zorunlu hale getirilebilir. 
+IAM Ana sayfasındaki sol taraftaki menüden **Dashboard** tıklayın, ve sayfanın en üstünde bulunan **IAM users sign-in link:** de https://.. ile başlayan linki kopyalayıp browser'da yeni sekmede sayfayı açın.  Yeni kullanıcı adınız ve şifrenizi kullanarak sisteme giriş yapın. İlk defa yeni kullanıcı ile giriş yaptığınız için şifre değişikliği sayfası açılacaktır. O sayfadan yeni şifrenizi tanımlamanız gerekecektir. Bu örnek için şifre kuralları eklemedim fakat, yeni oluşturacağınız şifrenin kaç karakterden oluşması gerektiği, hangi tip karakterden kaçar tane kullanmanız gerektiği, şifrenin geçerlilik periyodu gibi değerleri şifreleme kuralı olarak tanımlayıp, o kurala uygun şifre oluşturmak zorunlu hale getirilebilir. 
 
 Tebrikler..!! Yeni Kullanıcınız ile sisteme giriş yaptınız. Şimdi biraz IoT servisinin kullanalım.
 
@@ -126,19 +127,20 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 [![AWS IoT Robots](http://img.youtube.com/vi/woDrWD7bSTM/0.jpg)](http://www.youtube.com/watch?v=woDrWD7bSTM "AWS IoT Robots Workshop")
 
-Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
-1. AWS Web Arayüzünden 'IoTRoboUser' kullanıcısı ile giriş yapın ve Cloud9 servisi ana sayfasına (dashboard) geçin.
+1. AWS Web Arayüzünden **IoTRoboUser** kullanıcısı ile giriş yapın ve Cloud9 servisi ana sayfasına (dashboard) geçin.
 
 2. Sağ üs köşeden AWS Region olarak **"EU (Ireland)"** seçildiğinden emin olun.
 
-3. Cloud9 Dashboard ekranında turuncu "Create Environment" butonuna tıklayın.
+3. Cloud9 Dashboard ekranında turuncu **Create Environment** butonuna tıklayın.
 
-4. Name alanına **IoTRobotsIDE** yazın. Sonrasında "Next Step" butonuna tıklayın.
+4. Name alanına **IoTRobotsIDE** yazın. Sonrasında **Next Step** butonuna tıklayın.
 
-5. "Configuration Settings" ekraninda, mevcut değerleri (minimum gerekleri sağlayacak değerler işimizi görecektir) değiştirmeden "Next Step" butonuna tıklayın. 'Cost Saving Setting' alanında 30 dakika olarak atanan değer, sizin Cloud9 ortamını 30 dk kullanmadığınız durumda otomatik olarak uyku moduna geçmesine sebep olur. Bu durumda herhangi bir kayıp olmadan, o anki durum kaydedilir, tekrar çalıştırdığınızda kaldığınız yerde devam edebilirsiniz. 
+5. **Configuration Settings** ekraninda, mevcut değerleri (minimum gerekleri sağlayacak değerler işimizi görecektir) değiştirmeden "Next Step" butonuna tıklayın. _Cost Saving Setting_ alanında 30 dakika olarak atanan değer, sizin Cloud9 ortamını 30 dk kullanmadığınız durumda otomatik olarak uyku moduna geçmesine sebep olur. Bu durumda herhangi bir kayıp olmadan, o anki durum kaydedilir, tekrar çalıştırdığınızda kaldığınız yerde devam edebilirsiniz. 
 
-6. Onay sayfasında, Cloud9 IDE kullanırken önerilen en iyi pratiklere göz atmakta fayda var. Sonrasında "Create Environment" butonuna tıklayın.
+6. Onay sayfasında, Cloud9 IDE kullanırken önerilen en iyi pratiklere göz atmakta fayda var. Sonrasında **Create Environment** butonuna tıklayın.
+
+7. Kısa bir süre sonra Cloud9 ortamı sizin için oluşturulmuş alacak. 
 
 
 **Cloud9 Ortamının Konfigürasyonu**
@@ -182,14 +184,14 @@ python setup.py install
 mkdir ~/environment/robo1; 
 mkdir ~/environment/robo2
 ```
-3. Yeni klasörleri sol taraftaki 'Environment' penceresinde görebilirsiniz. Robo'ları AWS IoT Core'a bağlanıp MQTT mesajlarını gönderebilmeleri için küçük bir Python (desteklenen diğer [diller](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html)) koduna ihtiyacım olacak.
-Bunun için _Robo1_ klasörü üzerinde sağ tıklayıp, 'New File' seçin. Dosya. klasörün altında görülecektir. Dosyanın ismini **lab1.py** olarak değiştirin.
+3. Yeni klasörleri sol taraftaki **Environment** penceresinde görebilirsiniz. Robo'ları AWS IoT Core'a bağlanıp MQTT mesajlarını gönderebilmeleri için küçük bir Python (desteklenen diğer [diller](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html)) koduna ihtiyacım olacak.
+Bunun için _Robo1_ klasörü üzerinde sağ tıklayıp, **New File** seçin. Dosya, klasörün altında görülecektir. Dosyanın ismini **lab1.py** olarak değiştirin.
 
 
-4. Dosya seçip, çift tıklayın. **lab1.py** dosyası ana ekranda açıldı. Aşağıdaki kodu dosyanın içine kopyalayıp, dosyayı kaydedin. (Ctrl+S ya da Command+S ya da ACW Cloud9 menüsünden File/Save)
+4. Dosyayı seçip, çift tıklayın. **lab1.py** dosyası ana ekranda açıldı. Aşağıdaki kodu dosyanın içine kopyalayıp, dosyayı kaydedin. (Ctrl+S ya da Command+S ya da AWS Cloud9 menüsünden File/Save)
 
-```python
-KOD GELECEK..
+```
+https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab1/lab1.py
 
 ```
 
