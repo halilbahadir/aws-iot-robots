@@ -9,10 +9,15 @@ Bu proje kapsamında, AWS üzerinde IoT (Internet of Things) servislerini kullan
 Basitten daha karmaşığa doğru örnekler üzerinde ilerleyerek 
 
 - AWS IoT Core
+    - IoT Core
+    - IoT Rules
+    - IoT Shadows
 - AWS Greengrass
-- AWS Things Graph
-- AWS IoT Analytics
-- IoT Events
+    - Greengrass Core
+    - Greengrass Lambda Functions
+- AWS Things Graph (yakında)
+- AWS IoT Analytics (yakında)
+- IoT Events (yakında)
 
 servislerini deneyimlemenizi sağlamaya çalışacağız.
 
@@ -27,6 +32,11 @@ servislerini deneyimlemenizi sağlamaya çalışacağız.
 
 #### Ajanda
 
-* LAB 1
-* LAB 2
+* [LAB 1](https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab1.md)
+* [LAB 2](https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab2.md)
+* [LAB 3](https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab3.md)
+* [LAB 4](https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab4.md)
+* [LAB 5](https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab5.md)
+
+
 ....
