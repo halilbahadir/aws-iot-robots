@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Lab 1
+# Lab 5
 # AWS Region Ireland olduguna emin olun.
 
 import sys
