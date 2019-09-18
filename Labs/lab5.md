@@ -3,7 +3,7 @@
 
 Not: AWS IoT GreenGrass için diğer LAB1 dışındaki diğer LAB'ları yapmak zorunda değilsiniz. 
 
-Diğer Lab çalışmalarında olduğu gibi Robotlar (IoT Thing) doğrudan AWS bulut ortamındaki IoT Core servisinin Endpoint URL adresine gerekli sertifika ve yetki tanımlamaları ile erişebiliyorlar. AWS IoT Endpoint'e erişim için gerekli internet bağlantısının sürekli olduğu durumlarda, uç noktalar ile bulut veri merkezleri arasındaki network hızlarından dolayı gecikmelerin problem olmadığı durumlarda ya da tüm IoT mesajlarının işlenmeden (filtreleme, sadeleştirme, zenginleştirme vs.) IoT Servisine gönderilmesi gerektiği durumlarda bu yöntemi kullanmak anlamlı olabilir.  Fakat tersi durumlarda nasıl bir çözüm sağlayabiliriz. Örneğin tüm veriyi buluta göndermektense, uç noktada işleyip göndermek daha az anlamlı veri aktarımı yapmamızı sağlayabilir. AWS IoT servisleri içinde bu çözümü AWS IoT Greengrass servisi ile sağlamak mümkün.
+Diğer Lab çalışmalarında olduğu gibi Robotlar (IoT Thing) doğrudan AWS bulut ortamındaki IoT Core servisinin Endpoint URL adresine gerekli sertifika ve yetki tanımlamaları ile erişebiliyorlar. AWS IoT Endpoint'e erişim için gerekli internet bağlantısının sürekli olduğu durumlarda, uç noktalar ile bulut veri merkezleri arasındaki network hızlarından dolayı gecikmelerin problem olmadığı durumlarda ya da tüm IoT mesajlarının işlenmeden (filtreleme, sadeleştirme, zenginleştirme vs.) IoT Servisine gönderilmesi gerektiği durumlarda bu yöntemi kullanmak anlamlı olabilir.  Fakat tersi durumlarda nasıl bir çözüm sağlayabiliriz? Örneğin tüm veriyi buluta göndermektense, uç noktada işleyip göndermek daha az anlamlı veri aktarımı yapmamızı sağlayabilir. AWS IoT servisleri içinde bu çözümü AWS IoT Greengrass servisi ile sağlamak mümkün.
 
 Bu Lab çalışmasında Robotlar verilerini buluta AWS IoT Core'a göndermek yerine Greengrass Core'a gönderecekler. Yine aynı şekilde sertifika ve MQTT protokol kullanarak Greengrass Core'a bağlanacaklar fakat bağlantının yapılacağı endpoint ve Certificate Authority (CA), bizim örnek için Cloud9 ortamında kurulu olan Greengrass Core'un endpoint ve Certificate Authority (CA) olacak. 
 
@@ -53,7 +53,7 @@ Bu aşamada AWS IoT Core Web arayüzünü kullanarak, Greengrass için gerekli k
 
 12. Ekranın solundaki menüden **Cores** tıklayın.
 
-13. _IoTRoboGGGroup_ ile ilişkilendirilmiş **IoTRoboGGGroup_Core** Greengrass Core görebilirsiniz.
+13. _IoTRoboGGGroup_ ile ilişkilendirilmiş **IoTRoboGGGroup_Core** Greengrass Core görebilirsiniz. Sol üst köşedeki OK (<--) ile _IoTRoboGGGroup_ sayfasına geri gelin.
 
 14. Menüden **Settings** tıklayın. 
 
@@ -69,49 +69,27 @@ Bu aşamada AWS IoT Core Web arayüzünü kullanarak, Greengrass için gerekli k
 
 20. Log konfigürasyonu kaydetmek için **Save** butonuna tıklayın.
 
-21. _Settings_ ekranının en üstünde yer alan **Group Role** bölümünde **Add Role** tıklayın.
+21. Greengrass ekranından çıkıp, IoT Core sayfasına dönmek için ekranın sol üstündeki gri kutudaki ok --> işaretini tıklayın.
 
-22. Açılan ekranda **Greengrass_ServiceRole** rolünü seçin. **Save** tıklayın. 
+22. IoT Core sayfası menüsünden **Manage** tıklayın. 
 
+23. IoT Thing listesine yeni bir **IoTRoboGGGroup_Core** adında Thing eklediğini görüyoruz. Zira Greengrass Core, IoT Core için diğer Robo'lar gibi IoT Thing olarak çalışıyor. 
 
-23. Greengrass ekranından çıkıp, IoT Core sayfasına dönmek için ekranın sol üstündeki gri kutudaki ok --> işaretini tıklayın.
+24. Sayfadaki **IoTRoboGGGroup_Core** tıklayın.
 
-24. IoT Core sayfası menüsünden **Manage** tıklayın. 
+25. Menüden **Security** seçin. 
 
-25. IoT Thing listesine yeni bir **IoTRoboGGGroup_Core** adında Thing eklediğini görüyoruz. Zira Greengrass Core, IoT Core için diğer Robo'lar gibi IoT Thing olarak çalışıyor. 
+26. Açılan _Security_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş **Sertifikayı** da görebilirsiniz.
 
-26. Sayfadaki **IoTRoboGGGroup_Core** tıklayın.
+27. Ekranda _sertifika_ tıklayın ve açılan sayfada **Policy** tıklayın.
 
-27. Menüden **Security** seçin. 
+28. Açılan _Policy_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş otomatik olarak kuralları belırlenmiş **Policy** de görebilirsiniz.
 
-28. Açılan _Security_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş **Sertifikayı** da görebilirsiniz.
+29. _Policy_ üzerinde tıklayın. **Policy Document** alanında detaylarını görebilirsiniz.
 
-29. Ekranda _sertifika_ tıklayın ve açılan sayfada **Policy** tıklayın.
-
-30. Açılan _Policy_ sayfasında _IoTRoboGGGroup_Core_ ilişkilendirilmiş otomatik olarak kuralları belırlenmiş **Policy** de görebilirsiniz.
-
-31. _Policy_ üzerinde tıklayın. **Policy Document** alanında detaylarını görebilirsiniz.
-
-32. IoT Core ana sayfasına geri dönebilirsiniz.
+30. IoT Core ana sayfasına geri dönebilirsiniz.
 
 Tebrikler!! Greengrass Group ve Greengrass Core başarı ile oluşturdunuz. 
-
-
-
-**Greengrass_ServiceRole IAM Rolüne yetki verme**
-
-1. AWS Web arayüzünde üst menüden _Servises_ altından **IAM** tıklayın (sorgu alanından yararlanabilirsiniz) 
-
-2. Sol menüden **Roles** tıklayın.
-
-3. _Roles_ listesinden **Greengrass_ServiceRole** bulup, tıklayın. (_Search_ alanına 'Greengrass_ServiceRole' yazarak filtereleyebilirsiniz)
-
-4. _Greengrass_ServiceRole_ detay sayfasında _permissions_ tabında **Attach Policies** tıklayın.
-
-5. _Filtre_ alanında **CloudWatchLogsFullAccess** yazınız. Filtrelenmis policy listesinden **CloudWatchLogsFullAccess** işaretleyip, **Attach Policy** tıklayın.
-
-6. _Greengrass_ServiceRole_ ait policy listesine eklendiğini görebilirsiniz.
-
 
 
 **Greengrass Uç Nokta Ayarları (Cloud9)**
@@ -219,35 +197,45 @@ Bu bölümde Greengrass Core'a gelen verilerin işlenmesinde kullanacağımız L
 
 3. AWS Lambda web arayüzü açılacaktır. Ekranda **Create a function** butonuna tıklayın.
 
-4. **Author from scratch** ile sıfırdan bir fonksiyon geliştirebilirsiniz. Lambda fonksiyonları için hazır oluşturulmuş şablonları kullanabilirsiniz (Use a blueprint) ya da kendi uygulama kütüphanesinden mevcut fonksiyonları kullanabilirsiniz (Browse Serverless App Repository)
+4. **Use a blueprint** ile Lambda fonksiyonları için hazır oluşturulmuş şablonları kullanabilirsiniz, sıfırdan oluşturabilirsiniz ya da kendi uygulama kütüphanesinden mevcut fonksiyonları kullanabilirsiniz (Browse Serverless App Repository)
 
-5. _Function Name_ alanına **IoTRobotsGGLambda** yazın.
+5. **Bluentprints** alanına **greengrass** yazın enter basın.
 
-6. _Runtime_ için **Python 2.7** seçin. Bunun dışında bir çok farklı dil destekliyor ayrıca siz kendi Runtime ortamınızı getirebiliyorsunuz.
+6. Blueprints listesinden **greengrass-hello-world** seçin ve tıklayın.
 
-7. _Permissions_ alanı altında **choose or create an execution role** tıklayıp, diğer giriş alanlarına ulaşın.
 
-8. **Create a new role with basic Lambda permissions** seçin. Burada oluşturulan rol aslında greengrass senaryomuz için kullanılmayacak, çünkü biz Lambda fonksiyonunu bulutta değil, uç noktada bulunan Greengrass Core üzerinde çalıştıracağız. 
+7. _Function Name_ alanına **IoTRobotsGGLambda** yazın.
 
-9. **Create Function** butonuna tıklayın ve Lamba fonksiyonu ve IAM Rolünün oluşturulmasını bekleyin.
+8. _Execution Role_ alanı altında **Create a new role with basic Lambda permissions** seçin. Burada oluşturulan rol aslında greengrass senaryomuz için kullanılmayacak, çünkü biz Lambda fonksiyonunu bulutta değil, uç noktada bulunan Greengrass Core üzerinde çalıştıracağız. 
 
-10. Geliştirilen Lambda fonksiyonu için Greengrass Python kütüphanesine de ihtiyaç olacak ki, oraaki fonksiyonları da kullanabilelim. Bunun için hazırladığım kodu indirebilirsiniz (https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab5/lab5-IoTRobotsGGLambda.zip)
+9. **Create Function** butonuna tıklayın ve Lamba fonksiyonu ve IAM Rolünün oluşturulmasını bekleyin. Hazır bir sablon oluşturuldu.
 
-11. _Function Code_ bölümünde _Code Entry Type_ alanında **Upload a .zip file** seçin. 
+10. Geliştirilen Lambda fonksiyonu için Greengrass Python kütüphanesine de ihtiyaç olacak ki, oraaki fonksiyonları da kullanabilelim. Bunun için hazırladığım kodu [buradan](https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab5/IoTRobotsGGLambda.py) açık olan **greengrassHelloWorld.py** dosyası içine kopyalayabilirsiniz aşağıdaki linktende ulaşabilirsiniz.
 
-12. **Upload** butonuna tıklayın. Bir önceki adımda indirdiğiniz **lab5-IoTRobotsGGLambda.zip** dosyasını seçip. _Open_ butonuna tıklayın.
+```
+https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab5/IoTRobotsGGLambda.py
 
-13. _Upload_ butonu yanında yüklenecek dosyanın ismi görünecektir.
+```
 
-14. _Handler_ alanındaki yazıyı silip **IoTRobotsGGLambda.lambda_handler** yazın.
+11. Kodlama bölümündeki _environment_ **greengrassHelloWorld.py** dosyasında sağ tıklayıp **Rename** seçin ve dosyanın adını **IoTRobotsGGLambda.py** olarak değiştirin. 
 
-14. Ekranın sol üst köşesindeki turuncu renkli **Save** butonuna tıklayın.
+12. _Handler_ alanındaki yazıyı silip **IoTRobotsGGLambda.lambda_handler** yazın.
 
-15. Kayıt sonrasında, kod editörü ekranında Lambda fonksiyonunu görebilirsiniz. Kodu incelediğinizde; fonksiyondaki lambda_handler methodu, Robo1 ve Robo2'den **iot/robots**'e publish edilen mesajları, Lambda yine aynı Topic'e subscribe olarak okuyacak ve bu mesajları AWS bulut üzerindeki **iot/gg/robots** IoT Topic'e publish edecek şekilde geliştirildi. Kod üzerinde değişiklik yaparak gelen mesajları işleyebilirsiniz.
+13. Ekranın sol üst köşesindeki turuncu renkli **Save** butonuna tıklayın.
+
+14. Kayıt sonrasında, kod editörü ekranında Lambda fonksiyonunu görebilirsiniz. Kodu incelediğinizde; fonksiyondaki lambda_handler methodu, Robo1 ve Robo2'den **iot/robots**'e publish edilen mesajları, Lambda yine aynı Topic'e subscribe olarak okuyacak ve bu mesajları AWS bulut üzerindeki **iot/gg/robots** IoT Topic'e publish edecek şekilde geliştirildi. Kod üzerinde değişiklik yaparak gelen mesajları işleyebilirsiniz.
 
 16. Lambda arayüzünde **Actions** butonı tıklayın, açılan menüde **Publish New version** seçin.
 
 17. Açılan pencerede _version description_ alanına **1** yazın. ve **Publish** tıklayın.
+
+18.  Lambda arayüzünde **Actions** butonı tıklayın, açılan menüde **Create Alias** seçin.
+
+19. Açılan pencerede _Name_ alanına **Prod** yazın.
+
+20. _Version_ alanında ise biraz önce oluşturduğunuz versiyonu seçin.
+
+21. **Create** tıklayın. 
 
 **Robotların ve Lambda'nın Aboneliklerini (Subscription) Tanımlama**
 
@@ -269,7 +257,7 @@ Ayrıca Robo1 ve Robo2'nin **iot/robots** gönderdikleri mesajların Lambda fonk
 
 7. **Select an IoT Thing** tıklayın.
 
-8. Açılan Listeden **Robo1** seçin ve **Finish tıklayın.
+8. Açılan Listeden **Robo1** seçin ve **Finish** tıklayın.
 
 9. Aynı şekilde **Robo2** içinde 5.adımdan başlayarak **Robo2** IoT Thing greengrass grubuna ekleyin.
 
@@ -283,7 +271,7 @@ Ayrıca Robo1 ve Robo2'nin **iot/robots** gönderdikleri mesajların Lambda fonk
 
 14. Açılan ekranda **IoTRobotsGGLambda** seçin ve **Next** tıklayın.
 
-15. Lambda fonksiyonu versiyonu olarak **Version 1** seçin ve **Finish** tıklayın.
+15. Lambda fonksiyonu versiyonu olarak **Alias Prod** seçin ve **Finish** tıklayın.
 
 16. _Lambdas_ ekranında eklediniz **IoTRobotsGGLambda** fonksiyonunu görebilirsiniz.
 
@@ -336,6 +324,33 @@ Bır önceki bölümde yaptığımız konfigürasyon tanımlarını AWS bulut ü
 7. Deployment'da hata almanız durumunda listenin en solunde yer alan üç nokta tıklayıp, **re-deploy** ile tekrar yükleme başlatabilirsiniz. 2. adımda _grant access_ dedikten sonra AWS IAM servisinde oluşturulan yeni rolün tanımlanması bitmeden yükleme başlattığınızda hata alabilirsiniz. Bu lab sırasında sıkça karşılaştığımız bir hata, bu durumda 30 sn kadar bekleyip sonra tekrar yükleme (re-deploy) yapın.
 
 
+**Greengrass_ServiceRole IAM Rolüne yetki verme**
+
+1. AWS Web arayüzünde üst menüden _Servises_ altından **IAM** tıklayın (sorgu alanından yararlanabilirsiniz) 
+
+2. Sol menüden **Roles** tıklayın.
+
+3. _Roles_ listesinden **Greengrass_ServiceRole** bulup, tıklayın. (_Search_ alanına 'Greengrass_ServiceRole' yazarak filtereleyebilirsiniz)
+
+4. _Greengrass_ServiceRole_ detay sayfasında _permissions_ tabında **Attach Policies** tıklayın.
+
+5. _Filtre_ alanında **CloudWatchLogsFullAccess** yazınız. Filtrelenmis policy listesinden **CloudWatchLogsFullAccess** işaretleyip, **Attach Policy** tıklayın.
+
+6. _Greengrass_ServiceRole_ ait policy listesine eklendiğini görebilirsiniz.
+
+7. AWS Webarayüzünden IoT Core sayfasına tekrar geri dönün, 
+
+8. Sol menüden Greengrass altında **Groups** tıklayın.
+
+9. **IoTRoboGGGroup** kartına tıklayıp, detay sayfasına geçin.
+
+10. Sol menüde **Settings** tıklayın.
+
+11. _Settings_ ekranının en üstünde yer alan **Group Role** bölümünde **Add Role** tıklayın.
+
+12. Açılan ekranda **Greengrass_ServiceRole** rolünü seçin. **Save** tıklayın. 
+
+
 **Robotların Çalıştırılması** 
 
 Bu aşamada hazırladığımız Greengrass Core üzerindeki _Topic'lere_ Robotlarımız mesaj gönderecekler. Mesaj geldiğinde, yine Greengrass Core üzerinde yüklediğimiz Lambda fonksiyonu tetiklenecek, mesajı okuyup, gerekli aksiyonu alacak (bizim senaryoda battery seviyesi 10'un altında olan mesajları filtreleyecek) ve yeni mesaj oluşturup, bu sefer AWS bulut üzerindeki IoT Topic'e gönderecek. Böylece uç noktadan gelen her mesajı bulut üzerindeki IoT Core'a aktarmayıp, ihtiyacımız olan verileri gönderen bir model oluşturacağız.  
@@ -370,6 +385,7 @@ cd robo1
 python lab5.py
 
 ```
+Hata alması durumunda **python2** ile çalıştırın.
 
 11. İkinci terminalde de aşağıdaki komutu çalıştırın. (robo2)
 
@@ -378,6 +394,8 @@ cd robo2
 python lab5.py
 
 ```
+
+Hata alması durumunda **python2** ile çalıştırın.
 
 12. Her ikisinden de aşağıdakine benzer bir çıktı olacaktır.  
 
