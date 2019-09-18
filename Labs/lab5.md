@@ -336,11 +336,99 @@ Bır önceki bölümde yaptığımız konfigürasyon tanımlarını AWS bulut ü
 7. Deployment'da hata almanız durumunda listenin en solunde yer alan üç nokta tıklayıp, **re-deploy** ile tekrar yükleme başlatabilirsiniz. 2. adımda _grant access_ dedikten sonra AWS IAM servisinde oluşturulan yeni rolün tanımlanması bitmeden yükleme başlattığınızda hata alabilirsiniz. Bu lab sırasında sıkça karşılaştığımız bir hata, bu durumda 30 sn kadar bekleyip sonra tekrar yükleme (re-deploy) yapın.
 
 
+**Robotların Çalıştırılması** 
+
+Bu aşamada hazırladığımız Greengrass Core üzerindeki _Topic'lere_ Robotlarımız mesaj gönderecekler. Mesaj geldiğinde, yine Greengrass Core üzerinde yüklediğimiz Lambda fonksiyonu tetiklenecek, mesajı okuyup, gerekli aksiyonu alacak (bizim senaryoda battery seviyesi 10'un altında olan mesajları filtreleyecek) ve yeni mesaj oluşturup, bu sefer AWS bulut üzerindeki IoT Topic'e gönderecek. Böylece uç noktadan gelen her mesajı bulut üzerindeki IoT Core'a aktarmayıp, ihtiyacımız olan verileri gönderen bir model oluşturacağız.  
+
+1. AWS Web Arayüzünden giriş yapın ve AWS Region olarak IRELAND (eu-west-1) seçili olduğundan emin olun.
+
+2. Sol üst köşedeki 'Services' menüsünden _Cloud9_ seçip, Cloud9 Dashboard'u açın.
+
+3. Ekranda kullandığınız IDE (IoTRobotsIDE) ortamını açmak için, Open IDE tıklayın.
+
+4. Environment ekranında _robo1_ klasörünün üzerinde sağ tıklayın ve New File seçin.
+
+5. Dosyanın adını **lab5.py** olarak değiştirin. Çift tıklayarak **lab5.py** dosyasını açın.
+
+6. **lab5.py** dosyasının içine aşağıdaki dosyadaki kodu kopyalayın.
+
+```
+https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab5/lab5.py 
+
+```
+
+7. Dosyayı kaydettiğinizden emin olun (File/Save ya da Ctrl+S)
+
+8. Aynı şekilde 4. 5. 6. 7. adımları _robo2_ için de yapın. 
+
+9. Her iki robottan mesaj almak için, iki kodu da çalıştırmamız gerekiyor. Bunun için Cloud9 ekranında 2 tane terminal açın. _Yeşil_ **+** işaretine tıklayın ve **New Terminal** tıklayın.
+
+10. İlk terminalde aşağıdaki komutu çalıştırın. (robo1)
+
+```
+cd robo1
+python lab5.py
+
+```
+
+11. İkinci terminalde de aşağıdaki komutu çalıştırın. (robo2)
+
+```
+cd robo2
+python lab5.py
+
+```
+
+12. Her ikisinden de aşağıdakine benzer bir çıktı olacaktır.  
 
 
-1. 
+```
+robo1
+RoboName--> Robo1
+GROUP_CA -->./groupCA/9f5597e2-6362-4759-88d9-771bad27f7dd_CA_a8c24828-0bc1-4f56-9905-3b87d69bcb46.crt
+IoT Core Baglandi
+Mesaj Gonderildi
+
+```
+Robo2 için.
+
+```
+robo2
+RoboName--> Robo2
+GROUP_CA -->./groupCA/9f5597e2-6362-4759-88d9-771bad27f7dd_CA_a8c24828-0bc1-4f56-9905-3b87d69bcb46.crt
+IoT Core Baglandi
+Mesaj Gonderildi
+
+```
 
 
+**AWS IoT Core MQTT Client Üzerinden veri akışının izlenmesi**
+
+Bu bölümde Lambda fonksiyonu ile AWS IoT Core üzerindeki IoT Topic'e (iot/gg/robots) gelen mesajları, abone olarak (subscribe) görüntülemeye çalışacağız.
+
+
+1. AWS Web arayüzünde üst menüden _Servises_ altından **IoT Core** tıklayın (sorgu alanından yararlanabilirsiniz)
+
+2. IoT Core web arayüzü menüsünden **Test** tıklayın.
+
+3. **MQTT client** açılacaktır. Ekranda **Subscribe to topic** tıklayın.
+
+4. **Subscription topic** alanına **iot/gg/robots** yazın.
+
+5.**Subscribe to topic** butonuna tıklayın.
+
+6. _Subcription_ listesinde **iot/gg/robots** listelenecektir.
+
+7. Lambda fonksiyonuyla filterelenip IoT Core'a gönderilen (yani _battery <= 10_ kuralına uyan) mesajları siyah alanın altına geldiğini göreceksiniz. 
+
+
+Tebrikler AWS Greengrass başarı ile çalıştırıp, mesajları Lambda ile filtreleyerek AWS IoT Core'a gönderdiniz..
+
+**Temizlik Zamanı**
+
+1. IoT Core Test (MQTT Client) ekranında subscription listesinde **iot/gg/robots** yanındaki **X** işaretine tıklayarak, aboneliği sonlandırın.
+
+2. Cloud9 sekmesine geçip, robo1 ve robo2'nin çalıştığı her iki ayrı terminal ekranında **Ctrl+C** ile uygulamaları sonlandırın.
 
 
 
