@@ -1,6 +1,6 @@
 ## Lab 4: Robotların Birbirleriyle Haberleşmesi
 
-Şimdiye kadar robotlarımız IoT Core'a kendi statuleri ve özellikleri ile ilgili MQTT mesajları iletiyorlar, iletilen mesajlara göre pil seviyesinin düşük olması durumunda Amazon SNS üzerinden operasyon birimine Eposta gönderiliyor, aynı zamanda tüm mesajlar ileride analiz edilmek üzere Amazon S3'de saklanıyordu. Bu aşamada ise robotlarımız (Robo1 ve Robo2) birbirleriyle haberleşmelerini sağlayacağız. Aslınd yapacağımız, her bir robotun diğerinin abone (Subscribe) olduğu IoT Topic'e mesaj iletmesi (publish) ile sağlanacak. Yani Pub/Sub modelini işleteceğiz. Göndereceğimiz mesajı robotların adına kendimiz elle  gireceğiz. 
+Şimdiye kadar robotlarımız IoT Core'a kendi statuleri ve özellikleri ile ilgili MQTT mesajları iletiyorlar, iletilen mesajlara göre pil seviyesinin düşük olması durumunda Amazon SNS üzerinden operasyon birimine Eposta gönderiliyor, aynı zamanda tüm mesajlar ileride analiz edilmek üzere Amazon S3'de saklanıyordu. Bu aşamada ise robotlarımız (Robo1 ve Robo2) birbirleriyle haberleşmelerini sağlayacağız. Aslında yapacağımız, her bir robotun diğerinin abone (Subscribe) olduğu IoT Topic'e mesaj iletmesi (publish) ile sağlanacak. Yani Pub/Sub modelini işleteceğiz. Göndereceğimiz mesajı robotların adına kendimiz elle  gireceğiz. 
 
 Aşağıda bu lab'da oluşturup, kullanacağımız AWS kaynaklarını ve veri akışını görebilirsiniz.
  
@@ -56,6 +56,7 @@ cd robo1
 python lab4.py
 
 ```
+Hata alması durumunda **python2** ile çalıştırın.
 
 Ekranda aşağıdaki gibi mesaj görünecektir.
 
@@ -71,6 +72,8 @@ cd robo2
 python lab4.py
 
 ```
+Hata alması durumunda **python2** ile çalıştırın.
+
 
 Ekranda aşağıdaki gibi mesaj görünecektir.
 
