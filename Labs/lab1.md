@@ -197,7 +197,7 @@ https://github.com/halilbahadir/aws-iot-robots/blob/master/Scripts/lab1/lab1.py
 
 5. Aynı işlemi _Robo2_ içinde yapın. (3. ve 4. adımları tekrarlayın. Robo2 klasörünü kullanacağız).
 
-6. Sonraki adımlarda AWS IoT Core'da oluşturacağımız 'Thing'lerin (yani robotlar) IoT Sertifikalarını imzalamak için Sertifika Otoritesinden (CA) _public certificate_ ihtiyacımız olacak. Bunun için AWS IoT Certicate Authority Public Certicate dosyasını aşağıdaki linkten indirebilirsiniz. (Önerilen)     
+6. Sonraki adımlarda AWS IoT Core'da oluşturacağımız _Thing'lerin_ (yani robotlar) IoT Sertifikalarını imzalamak için Sertifika Otoritesinden (CA) _public certificate_ ihtiyacımız olacak. Bunun için AWS IoT Certicate Authority Public Certicate dosyasını aşağıdaki linkten indirebilirsiniz. (Önerilen)     
 
 
 ```
@@ -205,7 +205,7 @@ cd ~/environment
 wget -O root-CA.crt https://www.amazontrust.com/repository/AmazonRootCA1.pem
 ```
 
-Alternatif olarak şu [link](https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem) diğer bir CA olan Verisign sertifikasını da kullanabilirsiniz. (Eski yöntem)
+Alternatif olarak şu [link](https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem) diğer bir CA olan Verisign sertifikasını da kullanabilirsiniz. (Eski yöntem - tavsiye edilmiyor.)
 
 ```
 cd ~/environment
@@ -224,13 +224,13 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 [![AWS IoT Robots](http://img.youtube.com/vi/SPHsCvtAwMk/0.jpg)](http://www.youtube.com/watch?v=SPHsCvtAwMk "AWS IoT Robots Workshop")
 
-1. Eğer Cloud9 Dashboardunda iseniz, ekranın üstündeki Cloud9 menüsünün sol üst köşedeki **AWS Cloud9** tıklayıp açılan menüde 'Go to Your Dashboard' seçin. Yeni bir browser sekmesinde AWS Cloud9 Dashboard'u açılacaktır. 
+1. Eğer Cloud9 Dashboardunda iseniz, ekranın üstündeki Cloud9 menüsünün sol üst köşedeki **AWS Cloud9** tıklayıp açılan menüde **Go to Your Dashboard** seçin. Yeni bir browser sekmesinde AWS Cloud9 Dashboard'u açılacaktır. 
 
-2. AWS Cloud Dashboard'da üst menüden 'Services' tıklayıp, açılan servis listesinde **AWS IoT Core** seçin. Sorgu alanına 'IoT Core' yazarak listeyi filtreleyebilirsiniz.
+2. AWS Cloud Dashboard'da üst menüden _Services_ tıklayıp, açılan servis listesinde **AWS IoT Core** seçin. Sorgu alanına 'IoT Core' yazarak listeyi filtreleyebilirsiniz.
 
 3.  AWS IoT Core Dashboard açılacaktır. Sol üst köşeden AWS Region IRELAND seçili olduğuna emin olun, değilse de listeden EU  (ireland) seçin.
 
-4. 'Get Started' tıklayın
+4. **Get Started** tıklayın
 
 5. Sol taraftaki menüden **Manage** tıklayın.
 
@@ -238,11 +238,11 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 7. Sayfadaki **Create a single thing** butonlarından herhangi birini tıklayın.
 
-8. 'Name' alanına **Robo1** yazın (Diğer alanlar mevcut değerlerinde kalabilir.), ve **Next** tıklayın.
+8. _Name_ alanına **Robo1** yazın (Diğer alanlar mevcut değerlerinde kalabilir.), ve **Next** tıklayın.
 
 9. Sertifika oluşturma işlemi için, 'One-click certificate creation (recommended)' opsiyonu ile hızla oluşturup, IoT Thing (Robo1) ile ilişkilendirebiliriz fakat, şimdilik en son seçenek olan **Create thing without certicate** ile ilerleyelim. Sertifikaya IoT Thing'i sonraki adımda ilişkilendirelim.
 
-10. 'Thing' sayfasında yeni oluşturduğumuz **Robo1** listelenecektir.
+10. _Thing_ sayfasında yeni oluşturduğumuz **Robo1** listelenecektir.
 
 
 **AWS Web Arayüzünden IoT Policy Oluşturulması - Robo1 **
@@ -259,11 +259,11 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 3. **Create a policy** butonuna tıklayın.
 
-4. 'Name' alanına **RoboPolicy** yazın.
+4. _Name_ alanına **RoboPolicy** yazın.
 
-5.'Add Statement' alanının solunda **Advanced Mode** tıklayın. (Basic Mode'da çalıştığınızda da 'Action' alanında otomatik filtreleme ile kolaylıkla aksiyon secilebilir. Örneğin 'iot' yazmaya başladığınızda, tüm iot aksiyonları listelenecektir.)
+5. _Add Statement_ alanının solunda **Advanced Mode** tıklayın. (Basic Mode'da çalıştığınızda da 'Action' alanında otomatik filtreleme ile kolaylıkla aksiyon secilebilir. Örneğin 'iot' yazmaya başladığınızda, tüm iot aksiyonları listelenecektir.)
 
-6. 'Advanced Mode' Policy'lerin doğrudan JSON formatında yazılması şeklindedir. Robotların aşağıdaki aksiyonları gerçekleştirmeye yetkisi olması gerektiği için
+6. _Advanced Mode_ Policy'lerin doğrudan JSON formatında yazılması şeklindedir. Robotların aşağıdaki aksiyonları gerçekleştirmeye yetkisi olması gerektiği için
     * IoT Core Endpoint2e bağlantı kurabilme
     * IoT Topic'lere Publisher ya da Subscriber olabilme
     * Subscribe olduğu IoT Topic'den Mesaj okuyabilme
@@ -318,7 +318,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 7. Sertifikalar oluşturuldu ve aktif hale getirildi, şimdi Private Key ve Sertifika dosyasını makinanıza indirmeniz gerekecektir. 
 
-8. **A certificate for this thing** sertifikasını indirmek için **download** linkini tıklayın. ve dosyanın adını **_certificate.pem.crt_** olarak değiştirin.
+8. **A certificate for this thing** sertifikasını indirmek için **download** linkini tıklayın ve dosyanın adını **_certificate.pem.crt_** olarak değiştirin.
 
 9. **A private key** dosyasını indirmek için **download** linkini tıklayın. ve dosyanın adını **_PrivateKey.pem_** olarak değiştirin.
 
@@ -341,13 +341,13 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 2. **Certificates** tıklayın. 
 
-3. Sertifika listesinden, bir önceki adımda oluşturduğunuz sertifikayı seçin ve sayfanın sağ üst köşesindeki 'Actions' butonuna tıklayın, menü açılacaktır (ya da kutunun sol üst köşesindeki 3 noktaya tıklayın, aynı menü açılacaktır.)
+3. Sertifika listesinden, bir önceki adımda oluşturduğunuz sertifikayı seçin ve sayfanın sağ üst köşesindeki **Actions** butonuna tıklayın, menü açılacaktır (ya da kutunun sol üst köşesindeki 3 noktaya tıklayın, aynı menü açılacaktır.)
 
 4. Açılan menüden **Attach Policy** tıklayın. 
 
 5. Sayfada Policy listesinden, daha önce tanımladığımız **RoboPolicy** işaretleyip **Attach** butonuna tıklayın.
 
-6. Aynı şekilde, bu sefer 'Actions' menüsünden **Attach Thing** tıklayın
+6. Aynı şekilde, bu sefer **Actions** menüsünden **Attach Thing** tıklayın
 
 7. Sayfada IoT Thing listesinden, daha önce tanımladığımız **Robo1** işaretleyip **Attach** butonuna tıklayın.
 
@@ -368,15 +368,15 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
 
 3. Cloud9 Dashboard açılacaktır. Ekranda kullandığınız IDE (IoTRobotsIDE) ortamını açmak için, **Open IDE** tıklayın.
 
-4. Cloud9 IDE'de sol taraftaki 'Environment' penceresinde, **Robo1** klasörünü seçin.
+4. Cloud9 IDE'de sol taraftaki _Environment_ penceresinde, **Robo1** klasörünü seçin.
 
 5. Sayfanın üst kısmındaki menüden **File > Upload Local Files** tıklayın.
 
 6. Açılan pencerede **Select Files** tıklayın (Buton gri görünüyor ama disabled değil) ve '_certificate.pem.crt_' ve _'PrivateKey.pem'_ dosyalarını bilgisayarınızda bulup, ikisini de seçin.
 
-7. Dosyalar 'Robo1' klasörüne kopyalanacaktır. Dosyaların 'Robo1' klasörü altında olduğuna emin olun.
+7. Dosyalar _Robo1_ klasörüne kopyalanacaktır. Dosyaların _Robo1_ klasörü altında olduğuna emin olun.
 
-8. Pencereyi sağ köşeden 'X' ile kapatabilirsiniz. 
+8. Pencereyi sağ köşeden **X** ile kapatabilirsiniz. 
 
 
 **AWS Komut Satırı kullanarak IoT Thing, Policy ve Certificate Oluşturulması - Robo2**
@@ -394,7 +394,7 @@ cd ~/environment/robo2
 aws iot create-thing --thing-name Robo2
 ```
 
-2. Cloud9 Terminal ekranında IoT Certificate oluşturmak için aşağıdaki komutları çalıştırın. Komutla birlikte 'certicate.pem.crt' ve 'PrivateKey.pem' dosyaları üretilecekç Komut aynı zamanda  **certicateArn** çıktı olarak üretecek ve bu ARN (AWS Resource Names) bir sonraki komutta kullanacağız.  
+2. Cloud9 Terminal ekranında IoT Certificate oluşturmak için aşağıdaki komutları çalıştırın. Komutla birlikte 'certicate.pem.crt' ve 'PrivateKey.pem' dosyaları üretilecek. Komut aynı zamanda  **certicateArn** çıktı olarak üretecek ve bu ARN (AWS Resource Names) bir sonraki komutta kullanacağız.  
 
 ```
 aws iot create-keys-and-certificate --set-as-active --certificate-pem-outfile certificate.pem.crt --private-key-outfile PrivateKey.pem
@@ -428,20 +428,20 @@ aws iot attach-thing-principal --thing-name Robo2 --principal SERTIFIKA_Arn_DEGI
 
 10. **robo2** tıklayın.
 
-11. Açılan IoT Thing penceresinde, sol menüden 'Security' tıklayın. Eğer sertifika başarılı ile yaratıldı (2. adım) ve IoT Thing ile ilişkilendirildi ise (4. adım) Sertifika kartını görebilirsiniz. Eğer göremiyorsanız, tekrar 2. adımdan başlayıp, IoT Certificate oluşturmayı deneyin.
+11. Açılan IoT Thing penceresinde, sol menüden **Security** tıklayın. Eğer sertifika başarılı ile yaratıldı (2. adım) ve IoT Thing ile ilişkilendirildi ise (4. adım) Sertifika kartını görebilirsiniz. Eğer göremiyorsanız, tekrar 2. adımdan başlayıp, IoT Certificate oluşturmayı deneyin.
 
 12. Ekrandaki sertifika kartına tıklayın.
 
-13. Açılan IoT Certificate penceresinde, sol menüden 'Policies' tıklayın.
+13. Açılan IoT Certificate penceresinde, sol menüden **Policies** tıklayın.
 
 14. Eğer sertifika ile IoT Policy ilişkisi başarı ile yaratıldı ise (3. Adım) Ekranda **RoboPolicy** görebilirsiniz. Eğer göremiyorsanız, tekrar 3. adımdan başlayıp, IoT Certificate - IoT Policy ilişkisini kurmayı deneyin. Hatırlarsanız, IoT Policy'yi tüm robotlarda aynı yetki olmasını istediğimiz için bir kere oluşturup, tümüyle ilişkilendirme yapıyoruz. O yüzden tekrar bir IoT Policy oluşturmadan sadece sertifika ile ilişkilendiriyoruz. 
 
 Tebrikler!! **robo2** IoT Thing başarı ile oluşturdunuz.
 
 
-**Robotların IoT Core'a Bağlanması ve Mesaj Gönderimi **
+**Robotların IoT Core'a Bağlanması ve Mesaj Gönderimi**
   
- Buraya kadar olan bölümlerde robotların IoT Core'a bağlanıp mesaj göndermesi için gerekli olacak alt yapı, güvenlik ve uygulama bileşenlerini hazırladık. Şimdi artık robotların AWS IoT Core'a bağlanıp mesaj göndermeyi deneyeceğiz. Bunun için Python'da hazırladığımız uygulamayı kullanacağız.
+ Buraya kadar olan bölümlerde robotların IoT Core'a bağlanıp mesaj göndermesi için gerekli olacak alt yapı, güvenlik ve uygulama bileşenlerini hazırladık. Şimdi artık robotların AWS IoT Core'a bağlayıp mesaj göndermeyi deneyeceğiz. Bunun için Python'da hazırladığımız uygulamayı kullanacağız.
  
  Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilirsiniz.
 
@@ -473,6 +473,13 @@ Tebrikler!! **robo2** IoT Thing başarı ile oluşturdunuz.
 cd robo1
 python lab1.py
 ```
+Eğer hata (ModuleNotFoundError: No module named 'AWSIoTPythonSDK) alıyorsanız, Cloud9 üzerinde Python3 aktif olarak çalışıyor olmasındandır. Bu durumda **python2** ile uygulamayı çalıştırın.
+
+```
+cd robo1
+python2 lab1.py
+```
+
 Aşağıdaki gibi bir çıktı göreceksiniz.
 
 ```
@@ -492,12 +499,13 @@ ve her 5 sn'de 'Mesaj Gönderildi' diye ekranda görülmeye devam edecek.
 13. Sayfanın altında _iot/robots_ başlığı altında 5 sn'de bir tekrarlayan mesajları göreceksiniz.
 
 ```
- {
-  "val3": "Value 3",
-  "val2": "Value 2",
-  "val1": "Value 1",
-  "message": "Test Message"
-  "name": "Robo1"
+{
+  "battery": 69,
+  "longtitude": 109.604424443288,
+  "roboName": "robo1",
+  "latitude": 66.71158586828852,
+  "isBusy": 1,
+  "ID": 87159
 }
 ```
 
@@ -514,6 +522,12 @@ ve her 5 sn'de 'Mesaj Gönderildi' diye ekranda görülmeye devam edecek.
 ```
 cd robo2
 python lab1.py
+```
+Eğer hata (ModuleNotFoundError: No module named 'AWSIoTPythonSDK) alıyorsanız, Cloud9 üzerinde Python3 aktif olarak çalışıyor olmasındandır. Bu durumda **python2** ile uygulamayı çalıştırın.
+
+```
+cd robo2
+python2 lab1.py
 ```
 Aşağıdaki gibi bir çıktı göreceksiniz.
 
@@ -544,7 +558,7 @@ Lab çalışmasını bitirdikten sonra oluşturduğumuz AWS kaynaklarını silme
 
 4. Üst menüden **Services** tıklayın. Açılan menüden Compute grubundan **EC2** seçin.
 
-5. EC2 dashbpard ekranında _ _Resources_ _ başlığı altında **Running Instances** tıklayın.
+5. EC2 dashboard ekranında _ _Resources_ _ başlığı altında **Running Instances** tıklayın.
 
 6. Running EC2 listesinden **aws-cloud9** ile başlayan instance seçin.
 
@@ -553,4 +567,4 @@ Lab çalışmasını bitirdikten sonra oluşturduğumuz AWS kaynaklarını silme
 Tekrar **START** durumuna geçmek için, yine **Actions** butonu ile **Instance State / Start** tıklayabilirsiniz.
 
 
-Şimdi Lab2 için hazırız..
+Şimdi [Lab2](https://github.com/halilbahadir/aws-iot-robots/blob/master/Labs/lab2.md) için hazırız..
