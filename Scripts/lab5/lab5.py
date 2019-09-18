@@ -36,8 +36,8 @@ GROUP_CA_PATH = "./groupCA/"
 
 #discoveryEndpoint ="https://greengrass-ats.iot.eu-west-1.amazonaws.com:8443/greengrass/discover/thing/"+roboName
 
-discoveryEndpoint="BURAYA ENDPOINT GELECEK"
-#discoveryEndpoint="a100y3wur4j1gq-ats.iot.eu-west-1.amazonaws.com"
+discoveryEndpoint="a100y3wur4j1gq-ats.iot.eu-west-1.amazonaws.com"
+
 
 rootCAPath= "../root-CA.crt"
 privateKeyPath="PrivateKey.pem"
@@ -55,11 +55,9 @@ try:
     caList = discoveryInfo.getAllCas()
     coreList = discoveryInfo.getAllCores()
     
-    # Dizini ilk kayitlarini aliyorum 
+    # We only pick the first ca and core info
     groupId, ca = caList[0]
     coreInfo = coreList[0]
-    
-    print("Sertifika dosyaya kaydediyorum.")
     groupCA = GROUP_CA_PATH + groupId + "_CA_" + str(uuid.uuid4()) + ".crt"
     print("GROUP_CA -->" + groupCA)
     if not os.path.exists(GROUP_CA_PATH):
@@ -74,22 +72,25 @@ except DiscoveryInvalidRequestException as e:
     print("Tip: %s" % str(type(e)))
     print("Hata Mesaji: %s" % e.message)
     print("Sonlandiriliyor...")
-
+    
 except BaseException as e:
-    print("Discovery HAtasi!")
+    print("Discovery Hatasi!")
     print("Tip: %s" % str(type(e)))
     print("Hata Mesaji: %s" % e.message)
 
 
+#groupCA = "/greengrass/certs/28032a2a10.cert.pem"
+
+# Iterate through all connection options for the core and use the first successful one
 mqttClient = AWSIoTMQTTClient(roboName)
-mqttClient.configureCredentials(groupCA,"/home/ec2-user/environment/robo1/PrivateKey.pem","/home/ec2-user/environment/robo1/certificate.pem.crt")
+mqttClient.configureCredentials(groupCA,"PrivateKey.pem","certificate.pem.crt")
 
 
 
-#Baglanti bilgilerini aliyorum:
+#for connectivityInfo in coreInfo.connectivityInfoList:
 #    currentHost = connectivityInfo.host
 #    currentPort = connectivityInfo.port
-
+#    print("Trying to connect to core at %s:%d" % (currentHost, currentPort))
 currentHost ="172.31.31.189"
 currentPort ="8883"
 
@@ -99,9 +100,9 @@ try:
     connected = True
 #    break
 except BaseException as e:
-    print("Error in connect!")
-    print("Type: %s" % str(type(e)))
-    print("Error message: %s" % e.message)
+    print("Baglanti Hatasi!")
+    print("Tip: %s" % str(type(e)))
+    print("Hata Mesaji: %s" % e.message)
 
 
 #JSON formatina encode eden fonksiyon
