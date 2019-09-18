@@ -39,6 +39,7 @@ Aşağıdaki adımları takip edebilir ya da videodan izleyerek de ilerleyebilir
             "Effect": "Allow",
             "Action": [
                 "greengrass:*",
+                "cloudformation:*",
                 "iot:*",
                 "iotanalytics:*",
                 "cloud9:*",
